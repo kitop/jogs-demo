@@ -3,7 +3,7 @@ source "https://rubygems.org"
 ruby "2.3.1"
 
 gem "cuba",         "~> 3.8.0"
-gem "jwt"
+gem "jwt",          "~> 1.5.4"
 gem "oj",           "~> 2.17.5"
 gem "pg",           "~> 0.19.0"
 gem "rack-parser",  "~> 0.7.0"

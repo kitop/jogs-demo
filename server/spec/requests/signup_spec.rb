@@ -11,7 +11,6 @@ RSpec.describe Signup do
 
     expect_response 200
     expect(User.count).to eq 1
-    expect(response_json[:token]).to be_a String
-    expect(response_json[:token]).to eq User.last.id.to_s
+    expect(response_json[:token]).to eq AuthToken.issue({ user_id: User.last.id })
   end
 end

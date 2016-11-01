@@ -9,7 +9,7 @@ class Signup < Cuba
 
       if user.valid?
         user.save
-        json token: user.id.to_s
+        json token: AuthToken.issue(user_id: user.id)
       else
         unprocessable_entity({ errors: user.errors.full_messages })
       end

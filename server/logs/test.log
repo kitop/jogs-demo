@@ -125,3 +125,21 @@
 (0.000426s) SELECT count(*) AS "count" FROM "users" LIMIT 1
 (0.000519s) SELECT * FROM "users" ORDER BY "id" DESC LIMIT 1
 (0.000171s) ROLLBACK
+(0.000418s) SELECT txid_snapshot_xmax(txid_current_snapshot()) AS txid
+(0.001074s) SELECT "relname" FROM "pg_class" INNER JOIN "pg_namespace" ON ("pg_namespace"."oid" = "pg_class"."relnamespace") WHERE (("relkind" = 'r') AND ("pg_namespace"."nspname" = any(current_schemas(false))))
+(0.025853s) TRUNCATE TABLE "users";
+(0.000255s) BEGIN
+(0.001142s) SELECT count(*) AS "count" FROM "users" WHERE ("email" = 'test@test.com') LIMIT 1
+(0.000332s) SELECT count(*) AS "count" FROM "users" WHERE ("email" = 'test@test.com') LIMIT 1
+(0.000557s) INSERT INTO "users" ("email", "crypted_password", "created_at") VALUES ('test@test.com', '915196efc33378e6f62c30b0b0763b671b6b52e15b5d1a2701a63aca40321b495a434a621e42a866721961fa66735a05ec793a7f2a8d180c2dad93a68cd34a0390abb6cdeb29cc2f120cc1854badfbf53c25faeb9d135390cba3c38656444e3f', '2016-11-01 20:30:22.574822+0000') RETURNING *
+(0.000301s) ROLLBACK
+(0.000473s) SELECT txid_snapshot_xmax(txid_current_snapshot()) AS txid
+(0.000955s) SELECT "relname" FROM "pg_class" INNER JOIN "pg_namespace" ON ("pg_namespace"."oid" = "pg_class"."relnamespace") WHERE (("relkind" = 'r') AND ("pg_namespace"."nspname" = any(current_schemas(false))))
+(0.005550s) TRUNCATE TABLE "users";
+(0.000183s) BEGIN
+(0.001003s) SELECT count(*) AS "count" FROM "users" WHERE ("email" = 'test@test.com') LIMIT 1
+(0.000699s) SELECT count(*) AS "count" FROM "users" WHERE ("email" = 'test@test.com') LIMIT 1
+(0.001006s) INSERT INTO "users" ("email", "crypted_password", "created_at") VALUES ('test@test.com', 'e742f4f8659539a9b76a913077229b66672f881ceeedf6816eb360f610d2d92d2414fb62f2fb82088eed6e14ff93991ab296bb841b09b84f4a47aa0dcdbabdd4d0bd9cc5262e99488c30ddb80d1a2f5d8d55db11af8ad7fd2ac86ec0a86408ff', '2016-11-01 20:31:46.864781+0000') RETURNING *
+(0.000617s) SELECT count(*) AS "count" FROM "users" LIMIT 1
+(0.000851s) SELECT * FROM "users" ORDER BY "id" DESC LIMIT 1
+(0.000288s) ROLLBACK
