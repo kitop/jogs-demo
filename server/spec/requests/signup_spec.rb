@@ -13,4 +13,16 @@ RSpec.describe Signup do
     expect(User.count).to eq 1
     expect(response_json[:token]).to eq AuthToken.issue({ user_id: User.last.id })
   end
+
+  it "returns errors for invalid user" do
+    post "/signup", {
+      email: "test@test.com",
+      password: "pass1234",
+      password_confirmation: "foobar"
+    }
+
+    expect_response 422
+    expect(User.count).to eq 0
+    expect(response_json).to have_key(:errors)
+  end
 end
