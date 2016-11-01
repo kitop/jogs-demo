@@ -17,7 +17,7 @@ Dir["./serializers/**/*.rb"].each { |rb| require rb }
 Dir["./helpers/**/*.rb"].each { |rb| require rb }
 Dir["./routes/**/*.rb"].each  { |rb| require rb }
 
-Cuba.settings[:logger] = Logger.new("logs/#{RACK_ENV}.log").tap do |logger|
+Cuba.settings[:logger] = Logger.new("log/#{RACK_ENV}.log").tap do |logger|
   logger.formatter = proc do |severity, datetime, progname, msg|
     "#{msg}\n"
   end
