@@ -11,6 +11,7 @@ RSpec.configure do |config|
   config.include TestHelpers::JSON
   config.include TestHelpers::Requests
   config.include TestHelpers::Response
+  config.include TestHelpers::Factories
 
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction

@@ -6,7 +6,7 @@ class User < Sequel::Model
   attr_accessor :password_confirmation
   attr_reader :password
 
-  def fetch(email)
+  def self.fetch(email)
     User.where(email: email).first
   end
 

@@ -45,7 +45,6 @@ Cuba.define do
     run Sessions
   end
 
-
   on authenticated do
     on "jogs" do
       run Jogs
