@@ -1,0 +1,19 @@
+source "https://rubygems.org"
+
+ruby "2.3.1"
+
+gem "cuba",         "~> 3.8.0"
+gem "jwt"
+gem "oj",           "~> 2.17.5"
+gem "pg",           "~> 0.19.0"
+gem "rack-parser",  "~> 0.7.0"
+gem "sequel",       "~> 4.40.0"
+gem "shield",       "~> 2.1.0"
+gem "shotgun",      "~> 0.9.2", require: false
+
+group :test do
+  gem "rack-test",        "~> 0.6.3"
+  gem "rspec",            "~> 3.5.0"
+  gem "database_cleaner", "~> 1.5.0"
+  gem "pry",              "~> 0.10.3"
+end

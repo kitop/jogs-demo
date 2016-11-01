@@ -1,0 +1,127 @@
+# Logfile created on 2016-11-01 15:48:24 -0300 by logger.rb/54362
+(0.000477s) SELECT txid_snapshot_xmax(txid_current_snapshot()) AS txid
+(0.001434s) SELECT "relname" FROM "pg_class" INNER JOIN "pg_namespace" ON ("pg_namespace"."oid" = "pg_class"."relnamespace") WHERE (("relkind" = 'r') AND ("pg_namespace"."nspname" = any(current_schemas(false))))
+(0.000204s) BEGIN
+(0.000348s) ROLLBACK
+(0.000570s) SELECT txid_snapshot_xmax(txid_current_snapshot()) AS txid
+(0.001817s) SELECT "relname" FROM "pg_class" INNER JOIN "pg_namespace" ON ("pg_namespace"."oid" = "pg_class"."relnamespace") WHERE (("relkind" = 'r') AND ("pg_namespace"."nspname" = any(current_schemas(false))))
+(0.000209s) BEGIN
+(0.000272s) ROLLBACK
+(0.000493s) SELECT txid_snapshot_xmax(txid_current_snapshot()) AS txid
+(0.001574s) SELECT "relname" FROM "pg_class" INNER JOIN "pg_namespace" ON ("pg_namespace"."oid" = "pg_class"."relnamespace") WHERE (("relkind" = 'r') AND ("pg_namespace"."nspname" = any(current_schemas(false))))
+(0.000567s) SELECT txid_snapshot_xmax(txid_current_snapshot()) AS txid
+(0.001605s) SELECT "relname" FROM "pg_class" INNER JOIN "pg_namespace" ON ("pg_namespace"."oid" = "pg_class"."relnamespace") WHERE (("relkind" = 'r') AND ("pg_namespace"."nspname" = any(current_schemas(false))))
+(0.000203s) BEGIN
+(0.000190s) ROLLBACK
+(0.000205s) BEGIN
+(0.000164s) ROLLBACK
+(0.001231s) SELECT txid_snapshot_xmax(txid_current_snapshot()) AS txid
+(0.001165s) SELECT "relname" FROM "pg_class" INNER JOIN "pg_namespace" ON ("pg_namespace"."oid" = "pg_class"."relnamespace") WHERE (("relkind" = 'r') AND ("pg_namespace"."nspname" = any(current_schemas(false))))
+(0.011715s) TRUNCATE TABLE "users";
+(0.000267s) BEGIN
+(0.001301s) SELECT count(*) AS "count" FROM "users" WHERE ("email" = 'test@test.com') LIMIT 1
+(0.000254s) ROLLBACK
+(0.000190s) BEGIN
+(0.000544s) SELECT count(*) AS "count" FROM "users" WHERE ("email" = 'test@test.com') LIMIT 1
+(0.000169s) ROLLBACK
+(0.000419s) SELECT txid_snapshot_xmax(txid_current_snapshot()) AS txid
+(0.000920s) SELECT "relname" FROM "pg_class" INNER JOIN "pg_namespace" ON ("pg_namespace"."oid" = "pg_class"."relnamespace") WHERE (("relkind" = 'r') AND ("pg_namespace"."nspname" = any(current_schemas(false))))
+(0.004956s) TRUNCATE TABLE "users";
+(0.000205s) BEGIN
+(0.000726s) SELECT count(*) AS "count" FROM "users" WHERE ("email" = 'test@test.com') LIMIT 1
+(0.000419s) ROLLBACK
+(0.002111s) SELECT txid_snapshot_xmax(txid_current_snapshot()) AS txid
+(0.015010s) SELECT "relname" FROM "pg_class" INNER JOIN "pg_namespace" ON ("pg_namespace"."oid" = "pg_class"."relnamespace") WHERE (("relkind" = 'r') AND ("pg_namespace"."nspname" = any(current_schemas(false))))
+(0.006086s) TRUNCATE TABLE "users";
+(0.000213s) BEGIN
+(0.000739s) SELECT count(*) AS "count" FROM "users" WHERE ("email" = 'test@test.com') LIMIT 1
+(0.000233s) ROLLBACK
+(0.000454s) SELECT txid_snapshot_xmax(txid_current_snapshot()) AS txid
+(0.001062s) SELECT "relname" FROM "pg_class" INNER JOIN "pg_namespace" ON ("pg_namespace"."oid" = "pg_class"."relnamespace") WHERE (("relkind" = 'r') AND ("pg_namespace"."nspname" = any(current_schemas(false))))
+(0.005843s) TRUNCATE TABLE "users";
+(0.000200s) BEGIN
+(0.000738s) SELECT count(*) AS "count" FROM "users" WHERE ("email" = 'test@test.com') LIMIT 1
+(0.000277s) ROLLBACK
+(0.000145s) BEGIN
+(0.000643s) SELECT count(*) AS "count" FROM "users" WHERE ("email" = 'test@test.com') LIMIT 1
+(0.000227s) ROLLBACK
+(0.000423s) SELECT txid_snapshot_xmax(txid_current_snapshot()) AS txid
+(0.001043s) SELECT "relname" FROM "pg_class" INNER JOIN "pg_namespace" ON ("pg_namespace"."oid" = "pg_class"."relnamespace") WHERE (("relkind" = 'r') AND ("pg_namespace"."nspname" = any(current_schemas(false))))
+(0.005070s) TRUNCATE TABLE "users";
+(0.000222s) BEGIN
+(0.000848s) SELECT count(*) AS "count" FROM "users" WHERE ("email" = 'test@test.com') LIMIT 1
+(0.000236s) ROLLBACK
+(0.002298s) SELECT txid_snapshot_xmax(txid_current_snapshot()) AS txid
+(0.002705s) SELECT "relname" FROM "pg_class" INNER JOIN "pg_namespace" ON ("pg_namespace"."oid" = "pg_class"."relnamespace") WHERE (("relkind" = 'r') AND ("pg_namespace"."nspname" = any(current_schemas(false))))
+(0.020598s) TRUNCATE TABLE "users";
+(0.000234s) BEGIN
+(0.001119s) SELECT count(*) AS "count" FROM "users" WHERE ("email" = 'test@test.com') LIMIT 1
+(0.000250s) ROLLBACK
+(0.000433s) SELECT txid_snapshot_xmax(txid_current_snapshot()) AS txid
+(0.001227s) SELECT "relname" FROM "pg_class" INNER JOIN "pg_namespace" ON ("pg_namespace"."oid" = "pg_class"."relnamespace") WHERE (("relkind" = 'r') AND ("pg_namespace"."nspname" = any(current_schemas(false))))
+(0.005221s) TRUNCATE TABLE "users";
+(0.000211s) BEGIN
+(0.000155s) ROLLBACK
+(0.000956s) SELECT txid_snapshot_xmax(txid_current_snapshot()) AS txid
+(0.001115s) SELECT "relname" FROM "pg_class" INNER JOIN "pg_namespace" ON ("pg_namespace"."oid" = "pg_class"."relnamespace") WHERE (("relkind" = 'r') AND ("pg_namespace"."nspname" = any(current_schemas(false))))
+(0.005039s) TRUNCATE TABLE "users";
+(0.000206s) BEGIN
+(0.000769s) SELECT count(*) AS "count" FROM "users" WHERE ("email" = 'notanemail') LIMIT 1
+(0.000242s) ROLLBACK
+(0.002542s) SELECT txid_snapshot_xmax(txid_current_snapshot()) AS txid
+(0.028030s) SELECT "relname" FROM "pg_class" INNER JOIN "pg_namespace" ON ("pg_namespace"."oid" = "pg_class"."relnamespace") WHERE (("relkind" = 'r') AND ("pg_namespace"."nspname" = any(current_schemas(false))))
+(0.003978s) TRUNCATE TABLE "users";
+(0.000228s) BEGIN
+(0.000785s) SELECT count(*) AS "count" FROM "users" WHERE ("email" = 'notanemail') LIMIT 1
+(0.000367s) ROLLBACK
+(0.000498s) SELECT txid_snapshot_xmax(txid_current_snapshot()) AS txid
+(0.001144s) SELECT "relname" FROM "pg_class" INNER JOIN "pg_namespace" ON ("pg_namespace"."oid" = "pg_class"."relnamespace") WHERE (("relkind" = 'r') AND ("pg_namespace"."nspname" = any(current_schemas(false))))
+(0.027928s) TRUNCATE TABLE "users";
+(0.000258s) BEGIN
+(0.000279s) ROLLBACK
+(0.005751s) SELECT txid_snapshot_xmax(txid_current_snapshot()) AS txid
+(0.039244s) SELECT "relname" FROM "pg_class" INNER JOIN "pg_namespace" ON ("pg_namespace"."oid" = "pg_class"."relnamespace") WHERE (("relkind" = 'r') AND ("pg_namespace"."nspname" = any(current_schemas(false))))
+(0.005741s) TRUNCATE TABLE "users";
+(0.000229s) BEGIN
+(0.000808s) SELECT count(*) AS "count" FROM "users" WHERE ("email" = 'test@test.com') LIMIT 1
+(0.000262s) SELECT count(*) AS "count" FROM "users" WHERE ("email" = 'test@test.com') LIMIT 1
+(0.030677s) INSERT INTO "users" ("email", "crypted_password", "created_at") VALUES ('test@test.com', 'd962a4838383c1bef3781caa3b02b7278f4e0c4ffcfba3a5bf79882c1a08be59f50a3bd127bd8dce800a5fe0a32f5988d07e50960fea24d0a4f2bd66178cd2b5561ed5e25befacb1622a2e015c86c88c6dc0afe496c274f1c7844680da83d353', '2016-11-01 20:20:11.628578+0000') RETURNING *
+(0.000382s) SELECT count(*) AS "count" FROM "users" LIMIT 1
+(0.000196s) ROLLBACK
+(0.002890s) SELECT txid_snapshot_xmax(txid_current_snapshot()) AS txid
+(0.026024s) SELECT "relname" FROM "pg_class" INNER JOIN "pg_namespace" ON ("pg_namespace"."oid" = "pg_class"."relnamespace") WHERE (("relkind" = 'r') AND ("pg_namespace"."nspname" = any(current_schemas(false))))
+(0.005813s) TRUNCATE TABLE "users";
+(0.000264s) BEGIN
+(0.001183s) SELECT count(*) AS "count" FROM "users" WHERE ("email" = 'test@test.com') LIMIT 1
+(0.000372s) SELECT count(*) AS "count" FROM "users" WHERE ("email" = 'test@test.com') LIMIT 1
+(0.000591s) INSERT INTO "users" ("email", "crypted_password", "created_at") VALUES ('test@test.com', '1a56751003060417c8eedbddc5e3b681db3ee86183cf4decf2ddf5ed94938508264aeb024c933ca2a23eeeab5f9d25604062b504bf4e70de82b7661f816ce41902f214da4fa72587b1d7f9cf8c274e9921014ca0bb0c04851eb63bd4394b54a4', '2016-11-01 20:20:38.583422+0000') RETURNING *
+(0.000528s) SELECT count(*) AS "count" FROM "users" LIMIT 1
+(0.000305s) ROLLBACK
+(0.003223s) SELECT txid_snapshot_xmax(txid_current_snapshot()) AS txid
+(0.016780s) SELECT "relname" FROM "pg_class" INNER JOIN "pg_namespace" ON ("pg_namespace"."oid" = "pg_class"."relnamespace") WHERE (("relkind" = 'r') AND ("pg_namespace"."nspname" = any(current_schemas(false))))
+(0.012773s) TRUNCATE TABLE "users";
+(0.000245s) BEGIN
+(0.000852s) SELECT count(*) AS "count" FROM "users" WHERE ("email" = 'test@test.com') LIMIT 1
+(0.000384s) SELECT count(*) AS "count" FROM "users" WHERE ("email" = 'test@test.com') LIMIT 1
+(0.000550s) INSERT INTO "users" ("email", "crypted_password", "created_at") VALUES ('test@test.com', '01a18f6ae0dac2124af00a1cbdea39d606cd2793fe7f8b8e2c332fab6d867f92ac27f5ed8b115a903982a4e303293b85a9e79c132ecbfb1d4b9eff46c23f1ff1f7e5c7db8752c1956c69a510d34624715d9b814e06c0ba34b09c63b871fb7431', '2016-11-01 20:21:01.715782+0000') RETURNING *
+(0.000382s) SELECT count(*) AS "count" FROM "users" LIMIT 1
+(0.000407s) ROLLBACK
+(0.000444s) SELECT txid_snapshot_xmax(txid_current_snapshot()) AS txid
+(0.000974s) SELECT "relname" FROM "pg_class" INNER JOIN "pg_namespace" ON ("pg_namespace"."oid" = "pg_class"."relnamespace") WHERE (("relkind" = 'r') AND ("pg_namespace"."nspname" = any(current_schemas(false))))
+(0.005992s) TRUNCATE TABLE "users";
+(0.000251s) BEGIN
+(0.000902s) SELECT count(*) AS "count" FROM "users" WHERE ("email" = 'test@test.com') LIMIT 1
+(0.000315s) SELECT count(*) AS "count" FROM "users" WHERE ("email" = 'test@test.com') LIMIT 1
+(0.000584s) INSERT INTO "users" ("email", "crypted_password", "created_at") VALUES ('test@test.com', '3ba01dc0265e9a012003bb71ceb60a5c1b75669cc802624a91b9b9156114d5b1fdbdba220ee133d500ddddc8e0ae020b1e477c2f6dceb194d37792abf5ac5bde25622691c32680f3442326875ce020f2b21403d02ea18b1f605309485eb70ff1', '2016-11-01 20:21:24.128171+0000') RETURNING *
+(0.000429s) SELECT count(*) AS "count" FROM "users" LIMIT 1
+(0.000248s) ROLLBACK
+(0.001573s) SELECT txid_snapshot_xmax(txid_current_snapshot()) AS txid
+(0.026558s) SELECT "relname" FROM "pg_class" INNER JOIN "pg_namespace" ON ("pg_namespace"."oid" = "pg_class"."relnamespace") WHERE (("relkind" = 'r') AND ("pg_namespace"."nspname" = any(current_schemas(false))))
+(0.007714s) TRUNCATE TABLE "users";
+(0.000364s) BEGIN
+(0.001068s) SELECT count(*) AS "count" FROM "users" WHERE ("email" = 'test@test.com') LIMIT 1
+(0.000345s) SELECT count(*) AS "count" FROM "users" WHERE ("email" = 'test@test.com') LIMIT 1
+(0.000661s) INSERT INTO "users" ("email", "crypted_password", "created_at") VALUES ('test@test.com', '4699583c673489999966544299ad11b080253761ea623b75a309249f757200ce28b7f2ec4c5fefc6c5af4ef360f42f2e987a58428bc0140e84af5553aa7100480a29951c130698ae4b65afb2c370cbd3754025ed3dbe6eef16abe2534ababbe8', '2016-11-01 20:21:45.426683+0000') RETURNING *
+(0.000426s) SELECT count(*) AS "count" FROM "users" LIMIT 1
+(0.000519s) SELECT * FROM "users" ORDER BY "id" DESC LIMIT 1
+(0.000171s) ROLLBACK

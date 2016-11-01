@@ -1,0 +1,13 @@
+# Logfile created on 2016-11-01 16:24:37 -0300 by logger.rb/54362
+(0.000854s) SELECT * FROM "users" WHERE ("email" = 'foo@foo.com')
+(0.000485s) SELECT * FROM "users" WHERE ("email" = 'foo@foo2.com')
+(0.000751s) SELECT count(*) AS "count" FROM "users" WHERE ("email" = 'foo@foo2.com') LIMIT 1
+(0.000552s) SELECT count(*) AS "count" FROM "users" WHERE ("email" = 'foo@foo2.com') LIMIT 1
+(0.000535s) SELECT * FROM "users" WHERE ("email" = 'foo@foo2.com') LIMIT 1
+(0.001102s) SELECT count(*) AS "count" FROM "users" WHERE ("email" = 'foo@foo.com') LIMIT 1
+(0.000562s) SELECT count(*) AS "count" FROM "users" WHERE ("email" = 'foo@foo.com') LIMIT 1
+(0.000574s) SELECT count(*) AS "count" FROM "users" WHERE ("email" = 'foo@foo.com') LIMIT 1
+(0.000577s) SELECT count(*) AS "count" FROM "users" WHERE ("email" = 'foo@foo.com') LIMIT 1
+(0.000534s) SELECT count(*) AS "count" FROM "users" WHERE ("email" = 'foo@foo.com') LIMIT 1
+(0.001055s) SELECT count(*) AS "count" FROM "users" WHERE ("email" IS NULL) LIMIT 1
+(0.001460s) SELECT count(*) AS "count" FROM "users" WHERE ("email" = 'foo@foo.com') LIMIT 1

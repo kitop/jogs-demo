@@ -1,0 +1,25 @@
+development:
+  adapter: postgres
+  host: localhost
+  database: jogger_development
+  username: root
+  password:
+  encoding: utf8
+
+test:
+  adapter: postgres
+  host: localhost
+  database: jogger_test
+  username: root
+  password:
+  encoding: utf8
+  timeout: 5000
+
+production:
+  adapter: postgres
+  host: localhost
+  database: jogger_production
+  username: root
+  password:
+  encoding: utf8
+  timeout: 5000
