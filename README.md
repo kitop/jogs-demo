@@ -14,3 +14,44 @@
 * All actions need to be done client side using AJAX, refreshing the page is not acceptable.
 * Bonus: unit and e2e tests!
 * You will not be marked on graphic design, however, do try to keep it as tidy as possible.
+
+## Set Up
+
+#### API
+Set up
+
+```
+cd server
+bundle install
+make db_create name=jogger_development
+make db_migrate env=development
+cp config/database.yml.example config/database.yml
+cp .env.example .env
+```
+
+Make sure to edit `config/database.yml` and `.env` with proper settings.
+
+```
+make server
+ ```
+
+This will initialize a server in port 9393.
+
+
+## Tests
+
+#### API Tests
+
+
+Set up:
+```
+cd server
+make db_create name=jogger_test
+make db_migrate env=test
+cp .env.example .env.test
+```
+
+Run tests:
+```
+make test
+ ```
