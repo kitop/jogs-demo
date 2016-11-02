@@ -5,9 +5,13 @@ module AuthToken
     JWT.encode(payload, JWT_SECRET)
   end
 
+  def self.decode(token)
+    JWT.decode(token, JWT_SECRET)[0]
+  end
+
   def self.valid?(token)
-    JWT.decode(token, JWT_SECRET)
-  rescue
+    decode(token)
+  rescue JWT::DecodeError
     false
   end
 end

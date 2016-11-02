@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 module RouteHelpers
   def json(object = nil)
-    res.headers.merge! Rack::CONTENT_TYPE => "application/json"
+    res.headers[Rack::CONTENT_TYPE] = "application/json"
     result = block_given? ? yield : object
     res.write Oj.dump(result, mode: :compat)
   end
@@ -24,6 +24,10 @@ module RouteHelpers
 
   def unprocessable_entity(body = nil)
     finish 422, body
+  end
+
+  def server_error(body = nil)
+    finish 500, body
   end
 
   def finish(status = 200, body = nil)

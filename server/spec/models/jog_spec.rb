@@ -45,4 +45,10 @@ RSpec.describe Jog do
       expect(jog.errors[:duration]).to include "has to be greater than 0"
     end
   end
+
+  it "calculates average speed" do
+    jog = build_jog(distance: 1000, duration: 600)
+
+    expect(jog.average_speed).to eq 1000 / 600.to_f
+  end
 end

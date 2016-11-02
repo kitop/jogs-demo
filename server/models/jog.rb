@@ -1,6 +1,13 @@
 # frozen_string_literal: true
 class Jog < Sequel::Model
   include Validations
+  plugin :timestamps
+
+  many_to_one :user
+
+  def average_speed
+    distance / duration.to_f
+  end
 
   def validate
     super

@@ -35,6 +35,7 @@ Cuba.use Rack::Parser, parsers: {
 
 Cuba.plugin UserHelpers
 Cuba.plugin RouteHelpers
+Cuba.plugin SerializeHelpers
 
 Cuba.define do
   on "signup" do

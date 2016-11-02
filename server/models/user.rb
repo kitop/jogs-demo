@@ -4,6 +4,8 @@ class User < Sequel::Model
   include Validations
   plugin :timestamps
 
+  one_to_many :jogs
+
   attr_accessor :password_confirmation
   attr_reader :password
 

@@ -5,8 +5,11 @@ module UserHelpers
 
   def authenticated
     env[USER_KEY] ||= if env[HTTP_AUTHORIZATION]
-                        # TODO decode token
-                        # token = env[HTTP_AUTHORIZATION][/^Bearer (.*)/, 1]
+                        token = env[HTTP_AUTHORIZATION][/^Bearer (.*)/, 1]
+                        if AuthToken.valid?(token)
+                          user_id = AuthToken.decode(token)["user_id"]
+                          User[user_id.to_i]
+                        end
                       end
   end
 
