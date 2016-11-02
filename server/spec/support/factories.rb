@@ -23,5 +23,16 @@ module TestHelpers
       User.new(attributes)
     end
 
+    def build_jog(attrs = {})
+      attributes = {
+        user_id: 1,
+        date: Date.today,
+        distance: 5000,
+        duration: 30 * 60
+      }.merge(attrs)
+
+      Jog.new(attributes)
+    end
+
   end
 end

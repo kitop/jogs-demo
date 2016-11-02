@@ -3,7 +3,7 @@ require_relative "../helper"
 
 RSpec.describe User do
   context "validations" do
-    it "is validates password is present" do
+    it "validates password is present" do
       user = User.new(email: "test@test.com")
 
       expect(user.valid?).to be_falsey

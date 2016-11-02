@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 class User < Sequel::Model
   include Shield::Model
+  include Validations
   plugin :timestamps
 
   attr_accessor :password_confirmation
@@ -20,6 +21,6 @@ class User < Sequel::Model
     errors.add(:email, "not valid") if email !~ /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
     errors.add(:email, "already exists") if User.where(email: email).count > 0
     errors.add(:password, "doesn't match confirmation") if password != password_confirmation
-    errors.add(:password, "can't be empty") if crypted_password.nil? or crypted_password.empty?
+    validate_presence_of(:password)
   end
 end

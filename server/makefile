@@ -16,4 +16,4 @@ db_create:
 	createdb -E UTF8 -e ${name}
 
 db_migrate:
-	sequel -m db/migrations -e ${env} config/database.yml
+	sequel -m db/migrations -e ${env} -E config/database.yml
