@@ -7,4 +7,13 @@ module Validations
       end
     end
   end
+
+  def validate_greater_than(value, *attributes)
+    attributes.each do |attribute|
+      value = send(attribute)
+      if value and value < 1
+        errors.add(attribute, "has to be greater than 0")
+      end
+    end
+  end
 end

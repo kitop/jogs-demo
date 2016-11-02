@@ -5,7 +5,6 @@ class Jog < Sequel::Model
   def validate
     super
     validate_presence_of :user_id, :date, :distance, :duration
-    errors.add(:duration, "has to be greater than 0") if duration and duration < 1
-    errors.add(:distance, "has to be greater than 0") if distance and distance < 1
+    validate_greater_than 0, :duration, :distance
   end
 end
