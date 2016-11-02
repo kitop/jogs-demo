@@ -16,4 +16,12 @@ module UserHelpers
   def current_user
     authenticated
   end
+
+  def admin?
+    current_user and current_user.admin?
+  end
+
+  def user_manager?
+    current_user and current_user.user_manager?
+  end
 end

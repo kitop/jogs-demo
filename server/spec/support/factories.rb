@@ -18,10 +18,18 @@ module TestHelpers
         email: Faker::Internet.email,
         password: password,
         password_confirmation: password,
-        role: "user"
+        role: User::ROLE_USER
       }.merge(attrs)
 
       User.new(attributes)
+    end
+
+    def build_admin(attrs = {})
+      build_user(attrs.merge(role: User::ROLE_ADMIN))
+    end
+
+    def build_user_manager(attrs = {})
+      build_user(attrs.merge(role: User::ROLE_MANAGER))
     end
 
     def build_jog(attrs = {})

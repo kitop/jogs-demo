@@ -51,5 +51,9 @@ Cuba.define do
     on "jogs" do
       run Jogs
     end
+
+    on "admin" do
+      run Admin
+    end
   end
 end
