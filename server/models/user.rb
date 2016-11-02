@@ -4,6 +4,12 @@ class User < Sequel::Model
   include Validations
   plugin :timestamps
 
+  ROLES = [
+    ROLE_USER = "user",
+    ROLE_ADMIN = "admin",
+    ROLE_MANAGER = "manager"
+  ]
+
   one_to_many :jogs
 
   attr_accessor :password_confirmation
@@ -16,6 +22,26 @@ class User < Sequel::Model
   def password=(password)
     @password = password
     super
+  end
+
+  def user?
+    role? ROLE_USER
+  end
+
+  def admin?
+    role? ROLE_ADMIN
+  end
+
+  def user_manager?
+    role? ROLE_MANAGER
+  end
+
+  def role?(query)
+    role == query
+  end
+
+  def before_save
+    self.role ||= ROLE_USER
   end
 
   def validate

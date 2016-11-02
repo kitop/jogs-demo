@@ -42,4 +42,13 @@ RSpec.describe User do
       expect(user.errors[:email]).to include "already exists"
     end
   end
+
+  describe "role" do
+    it "defaults to user" do
+      user = build_user(role: nil)
+      user.save
+
+      expect(user.role).to eq "user"
+    end
+  end
 end

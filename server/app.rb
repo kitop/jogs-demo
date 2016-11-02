@@ -9,6 +9,7 @@ RACK_ENV = ENV.fetch("RACK_ENV", "development")
 DB = Sequel.connect(
   YAML.load_file(File.expand_path("../config/database.yml", __FILE__))[RACK_ENV]
 )
+DB.extension :pg_enum
 JWT_SECRET = ENV.fetch("JWT_SECRET")
 
 Dir["./lib/**/*.rb"].each  { |rb| require rb }
