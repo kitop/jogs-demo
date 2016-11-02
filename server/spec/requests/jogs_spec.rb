@@ -28,7 +28,7 @@ RSpec.describe Jogs do
   end
 
   it "shows current user's jog" do
-    jog = create_jog user_id: user.id
+    jog = create_jog(user_id: user.id)
 
     get_as user, "/jogs/#{jog.id}"
 
@@ -36,9 +36,54 @@ RSpec.describe Jogs do
     expect(response_json).to eq serialize(jog)
   end
 
-  it "does not show another user's jog"
-  it "edits current user's jog"
-  it "does not edit another user's jog"
-  it "deletes current user's jog"
-  it "does not edit another user's jog"
+  it "does not show another user's jog" do
+    jog = create_jog(user_id: user.id + 1)
+
+    get_as user, "/jogs/#{jog.id}"
+
+    expect_response 404
+    expect(response_json).to eq nil
+  end
+
+  it "edits current user's jog" do
+    jog = create_jog(user_id: user.id)
+
+    put_as user, "/jogs/#{jog.id}", { distance: 1000, duration: 3600 }
+
+    jog.set(distance: 1000, duration: 3600)
+    expect_response 200
+    expect(response_json).to eq serialize(jog)
+  end
+
+  it "does not edit another user's jog" do
+    jog = create_jog(user_id: user.id + 1)
+
+    put_as user, "/jogs/#{jog.id}", { distance: 1000, duration: 3600 }
+
+    old_attributes = jog.values
+    jog.reload
+
+    expect_response 404
+    expect(response_json).to eq nil
+    expect(jog.values).to eq old_attributes
+  end
+
+  it "deletes current user's jog" do
+    jog = create_jog(user_id: user.id)
+
+    delete_as user, "/jogs/#{jog.id}"
+
+    expect_response 204
+    expect{ jog.reload }.to raise_error(Sequel::NoExistingObject)
+  end
+
+  it "does not delete another user's jog" do
+    jog = create_jog(user_id: user.id + 1)
+
+    delete_as user, "/jogs/#{jog.id}"
+
+    expect_response 404
+    expect(response_json).to eq nil
+    expect{ jog.reload }.not_to raise_error
+  end
 end

@@ -37,20 +37,24 @@ class Jogs < Cuba
     on (patch or put), ":id" do |id|
       jog = current_user.jogs_dataset[id.to_i]
 
-      if jog.update(jog_params)
-        json serialize(jog)
-      else
-        unprocessable_entity(errors: jog.errors.full_messages)
+      on jog do
+        if jog.update(jog_params)
+          json serialize(jog)
+        else
+          unprocessable_entity(errors: jog.errors.full_messages)
+        end
       end
     end
 
     on delete, ":id" do |id|
       jog = current_user.jogs_dataset[id.to_i]
 
-      if jog.destroy
-        no_content
-      else
-        server_error
+      on jog do
+        if jog.destroy
+          no_content
+        else
+          server_error
+        end
       end
     end
   end
