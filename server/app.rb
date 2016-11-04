@@ -27,7 +27,12 @@ end
 env_file = File.expand_path("../environment/#{RACK_ENV}.rb", __FILE__)
 require env_file if File.exist? env_file
 
-# Cuba.use Rack::CORS
+Cuba.use Rack::Cors do
+  allow do
+    origins "*"
+    resource "*", headers: :any, methods: %i{ :get post put delete destroy options }
+  end
+end
 Cuba.use Rack::ConditionalGet
 Cuba.use Rack::ETag
 Cuba.use Rack::Parser, parsers: {
