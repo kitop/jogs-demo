@@ -6,13 +6,28 @@ RSpec.describe Jogs do
   it "lists current user jogs" do
     jogs = [
       create_jog(user_id: user.id),
-      create_jog(user_id: user.id)
+      create_jog(user_id: user.id),
+      create_jog(user_id: user.id + 1)
     ]
 
     get_as user, "/jogs"
 
     expect_response 200
-    expect(response_json).to eq serialize(jogs)
+    expect(response_json).to eq serialize(jogs[0..1])
+  end
+
+  it "filters by date" do
+    jogs = [
+      create_jog(user_id: user.id, date: Date.today - 1),
+      create_jog(user_id: user.id, date: Date.today - 7)
+    ]
+
+    from = (Date.today - 2).iso8601
+    to = Date.today.iso8601
+    get_as user, "/jogs", { date_from: from, date_to: to }
+
+    expect_response 200
+    expect(response_json).to eq serialize(jogs[0..0])
   end
 
   it "creates a jog" do

@@ -10,7 +10,15 @@ class Admin < Cuba
 
     define do
       on get, root do
-        jogs = Jog.all
+        jogs = if req.params["date_from"] && req.params["date_to"]
+                from = req.params["date_from"]
+                to = req.params["date_to"]
+                Jog.where("date BETWEEN ?::date AND ?::date", from, to)
+               else
+                 Jog
+               end
+
+        jogs = jogs.order(Sequel.desc(:date)).all
 
         json serialize(jogs)
       end

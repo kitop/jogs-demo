@@ -8,7 +8,15 @@ class Jogs < Cuba
 
   define do
     on get, root do
-      jogs = current_user.jogs
+      jogs = if req.params["date_from"] && req.params["date_to"]
+               from = req.params["date_from"]
+               to = req.params["date_to"]
+               current_user.jogs_dataset.where("date BETWEEN ?::date AND ?::date", from, to)
+             else
+               jogs = current_user.jogs_dataset
+             end
+
+      jogs = jogs.order(Sequel.desc(:date)).all
 
       json serialize(jogs)
     end
