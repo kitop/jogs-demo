@@ -16,7 +16,7 @@ spec/reports
 test/tmp
 test/version_tmp
 tmp
-log
+log/**/*.log
 .ruby-version
 
 # YARD artifacts
