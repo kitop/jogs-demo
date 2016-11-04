@@ -11,7 +11,7 @@ RSpec.describe Signup do
 
     expect_response 200
     expect(User.count).to eq 1
-    expect(response_json[:token]).to eq AuthToken.issue({ user_id: User.last.id })
+    expect(response_json).to eq serialize(User.last, SessionSerializer)
   end
 
   it "returns errors for invalid user" do
