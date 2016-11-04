@@ -1,0 +1,16 @@
+@import "bourbon";
+@import "neat";
+
+.logo {
+  font-size: 48px;
+  text-align: center;
+  margin: 40px 0;
+}
+
+.content {
+  @include span-columns(6);
+  @include shift(3);
+  background: #FFF;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+  padding: 10px 30px;
+}
