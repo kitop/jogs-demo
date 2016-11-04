@@ -5,7 +5,7 @@ class Sessions < Cuba
       user = User.authenticate(req.params["email"], req.params["password"])
 
       if user
-        json token: AuthToken.issue(user_id: user.id)
+        json serialize(user, SessionSerializer)
       else
         unauthorized errors: ["invalid credentials"]
       end

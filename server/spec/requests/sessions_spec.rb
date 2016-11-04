@@ -12,7 +12,7 @@ RSpec.describe Sessions do
     }
 
     expect_response 200
-    expect(response_json[:token]).to eq AuthToken.issue({ user_id: user.id })
+    expect(response_json).to eq serialize(user, SessionSerializer)
   end
 
   it "returns unauthorized for invalid login" do
