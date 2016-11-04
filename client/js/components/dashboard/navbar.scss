@@ -1,0 +1,22 @@
+@import "bourbon";
+@import "neat";
+
+.root {
+  background-color: #3CAAED;
+  margin-bottom: 20px;
+  padding: 8px 0 10px;
+  color: #FFF;
+}
+
+.leftSide {
+  @include span-columns(4);
+}
+
+.rightSide {
+  @include span-columns(8);
+  @include omega();
+}
+
+.logo {
+  font-size: 32px;
+}
