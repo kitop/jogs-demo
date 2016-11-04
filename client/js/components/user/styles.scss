@@ -12,5 +12,9 @@
   @include shift(3);
   background: #FFF;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
-  padding: 10px 30px;
+  padding: 30px 30px;
+}
+
+.submit {
+  margin: 20px 0 0;
 }
