@@ -24,11 +24,11 @@
     "moment": "^2.13.0",
     "node-bourbon": "^4.2.8",
     "node-neat": "^1.7.2",
-    "node-sass": "^3.11.0",
+    "node-sass": "^3.11.2",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
     "react-redux": "^4.4.5",
-    "react-router": "^2.4.1",
+    "react-router": "^3.0.0",
     "react-router-redux": "^4.0.7",
     "redux": "^3.5.2",
     "redux-thunk": "^2.1.0",
@@ -43,6 +43,9 @@
     "expect": "^1.20.1",
     "jsdom": "^9.8.3",
     "localStorage": "^1.0.3",
-    "mocha": "^2.5.3"
+    "mocha": "^2.5.3",
+    "redux-devtools": "^3.3.1",
+    "redux-devtools-dock-monitor": "^1.1.1",
+    "redux-devtools-log-monitor": "^1.0.11"
   }
 }
