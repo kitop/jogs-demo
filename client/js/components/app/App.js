@@ -9,22 +9,11 @@ import SignIn from "../user/SignIn";
 import rootReducer from "../../reducers";
 import "./app.scss";
 
-import { createDevTools } from 'redux-devtools'
-import LogMonitor from 'redux-devtools-log-monitor'
-import DockMonitor from 'redux-devtools-dock-monitor'
-
-const DevTools = createDevTools(
-  <DockMonitor toggleVisibilityKey="ctrl-h"
-    changePositionKey="ctrl-w">
-  <LogMonitor />
-  </DockMonitor>
-)
-
 const routeMiddleware = routerMiddleware(browserHistory);
 
 const store = createStore(
   rootReducer,
-  compose(applyMiddleware(routeMiddleware, thunk), DevTools.instrument())
+  compose(applyMiddleware(routeMiddleware, thunk))
 );
 
 const history = syncHistoryWithStore(browserHistory, store);
@@ -56,13 +45,10 @@ class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <div>
-          <Router history={history}>
-            <Route path="/" component={Dashboard} />
-            <Route path="/sign_in" component={SignIn} />
-          </Router>
-          <DevTools />
-        </div>
+        <Router history={history}>
+          <Route path="/" component={Dashboard} onEnter={ this.requireUser }/>
+          <Route path="/sign_in" component={SignIn} />
+        </Router>
       </Provider>
     )
   }
