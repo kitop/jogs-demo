@@ -22,6 +22,6 @@ RSpec.describe Sessions do
     }
 
     expect_response 401
-    expect(response_json[:errors]).to include "invalid credentials"
+    expect(response_json[:errors]).to include "Invalid email and/or password."
   end
 end

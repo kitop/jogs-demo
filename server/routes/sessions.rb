@@ -7,7 +7,7 @@ class Sessions < Cuba
       if user
         json serialize(user, SessionSerializer)
       else
-        unauthorized errors: ["invalid credentials"]
+        unauthorized errors: ["Invalid email and/or password."]
       end
     end
   end
