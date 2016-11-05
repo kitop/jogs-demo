@@ -2,13 +2,21 @@ import * as actions from "../constants/action_types";
 import { setUser } from "../utils/user";
 import ApiClient from "../utils/api_client";
 
-export const logIn = (response) => ({
+const logIn = (response) => ({
   type: actions.LOG_IN,
   id: response.id,
   role: response.role,
   token: response.token,
   email: response.email,
 })
+
+const failedLogIn = (errors) => ({
+  type: actions.FAILED_LOG_IN,
+  errors
+})
+
+
+// THUNKS
 
 export const onSubmitLogIn = (email, password) => (dispatch, getState) => {
   ApiClient.logIn(email, password)
@@ -17,6 +25,6 @@ export const onSubmitLogIn = (email, password) => (dispatch, getState) => {
         setUser(response.data)
       },
       error => {
-        console.log("Something went wrong", error)
+        dispatch(failedLogIn(error.response.data.errors))
       })
 }

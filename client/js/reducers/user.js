@@ -1,14 +1,18 @@
-import { LOG_IN } from '../constants/action_types'
+import * as actions from '../constants/action_types'
 
 const user = (state = {}, action) => {
   switch(action.type) {
-    case LOG_IN:
+    case actions.LOG_IN:
       return {
-        ...state,
         id: action.id,
         role: action.role,
+        email: action.email,
         token: action.token,
       };
+    case actions.FAILED_LOG_IN:
+      return {
+        logInError: action.errors
+      }
     default:
       return state
   }

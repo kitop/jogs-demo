@@ -6,6 +6,7 @@ import styles from "./styles.scss";
 
 class SignIn extends React.Component {
   onSubmitForm(e) {
+    e.preventDefault();
     this.props.onSubmitLogIn({
       email: this.refs.email.value,
       password: this.refs.password.value
@@ -16,19 +17,22 @@ class SignIn extends React.Component {
     return (
       <UserLayout>
         <h1>Sign In</h1>
-        <div className={styles.form}>
+        <form className={styles.form} onSubmit={this.onSubmitForm.bind(this)}>
+          <div className={styles.error}>
+            { this.props.user.logInError }
+          </div>
           <div>
             <label htmlFor="email">Email</label>
-            <input type="text" name="email" id="email" ref="email" />
+            <input type="text" id="email" ref="email" />
           </div>
           <div>
             <label htmlFor="password">Password</label>
-            <input type="password" name="password" id="password" ref="password" />
+            <input type="password" id="password" ref="password" />
           </div>
           <div className={styles.submit}>
-            <button onClick={this.onSubmitForm.bind(this)}>Sign In</button>
+            <button type="submit">Sign In</button>
           </div>
-        </div>
+        </form>
       </UserLayout>
     )
   }
