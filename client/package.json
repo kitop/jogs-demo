@@ -4,7 +4,7 @@
   "description": "Jogs Tracker Client",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --hot --inline --progress --colors",
+    "start": "node server.js",
     "build": "webpack --progress --colors",
     "test": "mocha --compilers js:babel-register --recursive",
     "test:watch": "npm test -- --watch"

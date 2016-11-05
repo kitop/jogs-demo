@@ -13,27 +13,32 @@ var definePlugin = new webpack.DefinePlugin({
 //{ test: /\.js$/, exclude: /node_modules/, loader:'babel-loader' },
 //
 module.exports = {
-    entry: [
-      "./js/index.js"
-    ],
-    output: {
-        path: __dirname + '/build',
-        filename: "bundle.js",
-        publicPath: '/build/'
-    },
-    module: {
-        loaders: [
-            { test: /\.js?$/, loaders: ['babel-loader'], exclude: /node_modules/ },
-            { test: /\.js$/, exclude: /node_modules/, loader:'babel-loader',
-              query: {
-                presets:['react', 'es2015', 'stage-2']
-              }
-            },
-            { test: /\.css$/, loader: "style!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]" },
-            { test: /\.scss$/, loader: 'style!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!sass?sourceMap&' + sassPaths },
-            { test: /\.jsx/, loader: 'jsx' }
-        ]
-    },
-    plugins: [
-      new webpack.HotModuleReplacementPlugin()
-    ] };
+  entry: [
+    "./js/index.js"
+  ],
+  output: {
+    path: __dirname + '/build',
+    filename: "bundle.js",
+    publicPath: '/build/'
+  },
+  progress: true,
+  module: {
+    loaders: [
+      { test: /\.js?$/, loaders: ['babel-loader'], exclude: /node_modules/ },
+      { test: /\.js$/, exclude: /node_modules/, loader:'babel-loader',
+        query: {
+          presets:['react', 'es2015', 'stage-2']
+        }
+      },
+      { test: /\.css$/, loader: "style!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]" },
+      { test: /\.scss$/, loader: 'style!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!sass?sourceMap&' + sassPaths },
+      { test: /\.jsx/, loader: 'jsx' }
+    ]
+  },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin()
+  ],
+  devServer: {
+    inline: process.env.NODE_ENV == "development"
+  }
+};
