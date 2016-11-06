@@ -1,4 +1,6 @@
 import React from "react";
+import { connect } from "react-redux";
+import { onLogOut } from "../../actions";
 import styles from "./navbar.scss";
 
 class Navbar extends React.Component {
@@ -10,8 +12,9 @@ class Navbar extends React.Component {
             <div className={styles.logo}>
               Jogs Tracker
             </div>
-            <div className={styles.rightSide}>
-            </div>
+          </div>
+          <div className={styles.rightSide}>
+            <a onClick={this.props.onLogOut}>Log out</a>
           </div>
         </div>
       </div>
@@ -19,4 +22,13 @@ class Navbar extends React.Component {
   }
 }
 
-export default Navbar;
+const mapDispatchToProps = (dispatch) => ({
+  onLogOut: () => {
+    dispatch(onLogOut())
+  }
+})
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Navbar);

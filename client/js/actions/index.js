@@ -1,6 +1,6 @@
 import { push } from "react-router-redux";
 import * as actions from "../constants/action_types";
-import { setUser } from "../utils/user";
+import { setUser, clearUser } from "../utils/user";
 import ApiClient from "../utils/api_client";
 
 const logIn = (response) => ({
@@ -16,6 +16,9 @@ const failedLogIn = (errors) => ({
   errors
 })
 
+const logOut = () => ({
+  type: actions.LOG_OUT
+})
 
 // THUNKS
 
@@ -36,4 +39,11 @@ export const onSubmitLogIn = (email, password) => (dispatch, getState) => {
       error => {
         dispatch(failedLogIn(error.response.data.errors))
     })
+}
+
+export const onLogOut = () => (dispatch, getState) => {
+  dispatch(logOut())
+  // TODO clear jogs?
+  clearUser();
+  dispatch(push("/sign_in"))
 }

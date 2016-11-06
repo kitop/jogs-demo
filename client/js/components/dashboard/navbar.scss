@@ -15,6 +15,15 @@
 .rightSide {
   @include span-columns(8);
   @include omega();
+  text-align: right;
+  padding-top: 15px;
+  a {
+    color: white;
+    cursor: pointer;
+    &:hover {
+      color: #DADADA;
+    }
+  }
 }
 
 .logo {
