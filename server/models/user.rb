@@ -50,10 +50,10 @@ class User < Sequel::Model
 
   def validate
     super
-    errors.add(:email, "not valid") if email !~ /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
+    errors.add(:email, "is not valid") if email !~ /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
     errors.add(:email, "already exists") if User.where(email: email).exclude(id: id).count > 0
     errors.add(:password, "doesn't match confirmation") if password != password_confirmation
     validate_presence_of(:password) unless crypted_password
-    errors.add(:role, "is invalide") unless ROLES.include?(role)
+    errors.add(:role, "is invalid") unless ROLES.include?(role)
   end
 end

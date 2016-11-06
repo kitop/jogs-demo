@@ -11,7 +11,7 @@ class Signup < Cuba
         user.save
         json serialize(user, SessionSerializer)
       else
-        unprocessable_entity({ errors: user.errors.full_messages })
+        unprocessable_entity({ errors: user.errors.full_messages.map(&:capitalize) })
       end
     end
   end
