@@ -20,6 +20,11 @@ const logOut = () => ({
   type: actions.LOG_OUT
 })
 
+const failedSignUp = (errors) => ({
+  type: actions.FAILED_SIGN_UP,
+  errors
+})
+
 // THUNKS
 
 export const onSubmitLogIn = (email, password) => (dispatch, getState) => {
@@ -46,4 +51,18 @@ export const onLogOut = () => (dispatch, getState) => {
   // TODO clear jogs?
   clearUser();
   dispatch(push("/sign_in"))
+}
+
+export const onSubmitSignUp = (params) => (dispatch, getState) => {
+  ApiClient.signUp(params)
+    .then(
+      response => {
+        dispatch(logIn(response.data))
+        setUser(response.data)
+        dispatch(push("/"))
+      },
+      error => {
+        console.log(error.response)
+        dispatch(failedSignUp(error.response.data.errors))
+    })
 }

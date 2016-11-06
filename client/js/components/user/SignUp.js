@@ -1,17 +1,18 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router";
-import { onSubmitLogIn } from "../../actions";
+import { onSubmitSignUp } from "../../actions";
 import UserLayout from "./UserLayout";
 import styles from "./styles.scss";
 
 class SignIn extends React.Component {
   onSubmitForm(e) {
     e.preventDefault();
-    this.props.onSubmitLogIn({
+    this.props.onSubmitSignUp({
       email: this.refs.email.value,
-      password: this.refs.password.value
-    })
+      password: this.refs.password.value,
+      password_confirmation: this.refs.password_confirmation.value
+    });
   }
 
   render() {
@@ -30,10 +31,14 @@ class SignIn extends React.Component {
             <label htmlFor="password">Password</label>
             <input type="password" id="password" ref="password" />
           </div>
-          <div className={styles.submit}>
-            <button type="submit">Sign In</button>
+          <div>
+            <label htmlFor="password_confirmation">Password</label>
+            <input type="password" id="password_confirmation" ref="password_confirmation" />
           </div>
-          <Link to="/sign_up">Sign Up</Link>
+          <div className={styles.submit}>
+            <button type="submit">Sign Up</button>
+          </div>
+          <Link to="sign_in">Sign In</Link>
         </form>
       </UserLayout>
     )
@@ -45,8 +50,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  onSubmitLogIn: (params) => {
-    dispatch(onSubmitLogIn(params));
+  onSubmitSignUp: (params) => {
+    dispatch(onSubmitSignUp(params));
   }
 })
 

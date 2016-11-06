@@ -13,8 +13,9 @@ const user = (state = currentUser, action) => {
         token: action.token,
       };
     case actions.FAILED_LOG_IN:
+    case actions.FAILED_SIGN_UP:
       return {
-        logInError: action.errors
+        errors: action.errors.join(". ")
       };
     case actions.LOG_OUT:
       return {};

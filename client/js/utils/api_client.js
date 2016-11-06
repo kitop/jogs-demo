@@ -7,6 +7,10 @@ const xhr = axios.create({
 const ApiClient = {
   logIn (params) {
     return xhr.post("/sessions", params);
+  },
+
+  signUp (params) {
+    return xhr.post("/signup", params);
   }
 }
 

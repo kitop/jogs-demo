@@ -6,6 +6,7 @@ import { Router, Route, hashHistory, browserHistory } from "react-router";
 import { syncHistoryWithStore, routerMiddleware } from "react-router-redux";
 import Dashboard from "../dashboard/Dashboard";
 import SignIn from "../user/SignIn";
+import SignUp from "../user/SignUp";
 import rootReducer from "../../reducers";
 import "./app.scss";
 
@@ -48,6 +49,7 @@ class App extends React.Component {
         <Router history={history}>
           <Route path="/" component={Dashboard} onEnter={ this.requireUser }/>
           <Route path="/sign_in" component={SignIn} />
+          <Route path="/sign_up" component={SignUp} />
         </Router>
       </Provider>
     )
