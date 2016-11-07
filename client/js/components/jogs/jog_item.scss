@@ -1,0 +1,19 @@
+@import "bourbon";
+@import "neat";
+
+.root {
+  @include outer-container();
+  padding: 20px;
+  border-bottom: 1px solid #CCC;
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.main {
+  @include span-columns(9);
+}
+
+.actions {
+  @include span-columns(3);
+}
