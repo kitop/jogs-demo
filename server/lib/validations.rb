@@ -10,8 +10,8 @@ module Validations
 
   def validate_greater_than(value, *attributes)
     attributes.each do |attribute|
-      value = send(attribute)
-      if value and value < 1
+      attr_value = send(attribute).to_f
+      if attr_value and attr_value < value
         errors.add(attribute, "has to be greater than 0")
       end
     end
