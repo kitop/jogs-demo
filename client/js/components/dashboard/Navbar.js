@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { onLogOut } from "../../actions";
+import { onLogOut } from "../../store/users/actions";
 import styles from "./navbar.scss";
 
 class Navbar extends React.Component {

@@ -1,9 +1,10 @@
 import React from "react";
 import DashboardLayout from "./DashboardLayout";
+import JogsContainer from "../jogs/JogsContainer";
 
 const Dashboard = () => (
   <DashboardLayout>
-    <h1>Jogs Tracker</h1>
+    <JogsContainer />
   </DashboardLayout>
 )
 

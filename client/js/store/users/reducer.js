@@ -1,7 +1,7 @@
-import * as actions from '../constants/action_types'
-import { getUser } from "../utils/user";
+import * as actions from './action_types'
+import * as localStorage from "../../utils/user";
 
-let currentUser = getUser() || {};
+let currentUser = localStorage.getUser() || {};
 
 const user = (state = currentUser, action) => {
   switch(action.type) {
@@ -15,7 +15,7 @@ const user = (state = currentUser, action) => {
     case actions.FAILED_LOG_IN:
     case actions.FAILED_SIGN_UP:
       return {
-        errors: action.errors.join(". ")
+        errors: action.errors
       };
     case actions.LOG_OUT:
       return {};

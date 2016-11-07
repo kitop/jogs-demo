@@ -1,7 +1,7 @@
 import { push } from "react-router-redux";
-import * as actions from "../constants/action_types";
-import { setUser, clearUser } from "../utils/user";
-import ApiClient from "../utils/api_client";
+import * as actions from "./action_types";
+import * as localStorage from "../../utils/user";
+import ApiClient from "../../utils/api_client";
 
 const logIn = (response) => ({
   type: actions.LOG_IN,
@@ -34,7 +34,7 @@ export const onSubmitLogIn = (email, password) => (dispatch, getState) => {
     .then(
       response => {
         dispatch(logIn(response.data));
-        setUser(response.data);
+        localStorage.setUser(response.data);
         if(routing && routing.state && routing.state.nextPathname) {
           dispatch(push(routing.nextPathname))
         } else {
@@ -49,7 +49,7 @@ export const onSubmitLogIn = (email, password) => (dispatch, getState) => {
 export const onLogOut = () => (dispatch, getState) => {
   dispatch(logOut())
   // TODO clear jogs?
-  clearUser();
+  localStorage.clearUser();
   dispatch(push("/sign_in"))
 }
 
@@ -58,11 +58,10 @@ export const onSubmitSignUp = (params) => (dispatch, getState) => {
     .then(
       response => {
         dispatch(logIn(response.data))
-        setUser(response.data)
+        localStorage.setUser(response.data)
         dispatch(push("/"))
       },
       error => {
-        console.log(error.response)
         dispatch(failedSignUp(error.response.data.errors))
     })
 }

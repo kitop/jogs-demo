@@ -7,7 +7,7 @@ import { syncHistoryWithStore, routerMiddleware } from "react-router-redux";
 import Dashboard from "../dashboard/Dashboard";
 import SignIn from "../user/SignIn";
 import SignUp from "../user/SignUp";
-import rootReducer from "../../reducers";
+import rootReducer from "../../store/reducer";
 import "./app.scss";
 
 const routeMiddleware = routerMiddleware(browserHistory);

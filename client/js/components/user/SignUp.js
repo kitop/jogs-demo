@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router";
-import { onSubmitSignUp } from "../../actions";
+import { onSubmitSignUp } from "../../store/users/actions";
 import UserLayout from "./UserLayout";
 import styles from "./styles.scss";
 
@@ -21,7 +21,7 @@ class SignIn extends React.Component {
         <h1>Sign In</h1>
         <form className={styles.form} onSubmit={this.onSubmitForm.bind(this)}>
           <div className={styles.error}>
-            { this.props.user.errors }
+            { this.props.user.errors && this.props.user.errors.join(". ") }
           </div>
           <div>
             <label htmlFor="email">Email</label>
