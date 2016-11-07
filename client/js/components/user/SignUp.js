@@ -18,7 +18,7 @@ class SignIn extends React.Component {
   render() {
     return (
       <UserLayout>
-        <h1>Sign In</h1>
+        <h2>Sign In</h2>
         <form className={styles.form} onSubmit={this.onSubmitForm.bind(this)}>
           <div className={styles.error}>
             { this.props.user.errors && this.props.user.errors.join(". ") }
