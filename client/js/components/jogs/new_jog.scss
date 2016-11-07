@@ -1,0 +1,25 @@
+@import "bourbon";
+@import "neat";
+
+.root {
+  background: #FFF;
+  padding: 20px;
+  margin: 20px 0;
+}
+
+.fields-container {
+  @include outer-container;
+}
+
+.field {
+  @include span-columns(4)
+}
+
+.submit {
+  text-align: right;
+}
+
+.error {
+  margin-right: 20px;
+  color: #CE2626;
+}

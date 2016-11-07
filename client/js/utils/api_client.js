@@ -24,6 +24,10 @@ const ApiClient = {
 
   getJogs() {
     return xhr.get("/jogs");
+  },
+
+  createJog(params) {
+    return xhr.post("/jogs", params)
   }
 }
 
