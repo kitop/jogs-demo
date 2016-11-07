@@ -30,7 +30,7 @@ require env_file if File.exist? env_file
 Cuba.use Rack::Cors do
   allow do
     origins "*"
-    resource "*", headers: :any, methods: %i{ :get post put delete destroy options }
+    resource "*", headers: :any, methods: %i{ get post put delete destroy options }
   end
 end
 Cuba.use Rack::ConditionalGet
@@ -38,6 +38,7 @@ Cuba.use Rack::ETag
 Cuba.use Rack::Parser, parsers: {
   "application/json" => proc { |data| Oj.load(data) }
 }
+Cuba.use Rack::CommonLogger, Cuba.settings[:logger]
 
 Cuba.plugin UserHelpers
 Cuba.plugin RouteHelpers
