@@ -8,7 +8,6 @@ module UserHelpers
                         token = env[HTTP_AUTHORIZATION][/^Bearer (.*)/, 1]
                         if AuthToken.valid?(token)
                           user_id = AuthToken.decode(token)["user_id"]
-                          puts user_id
                           User[user_id.to_i]
                         end
                       end
