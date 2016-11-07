@@ -1,19 +1,20 @@
 import React from "react";
 import { connect } from "react-redux";
-import Jog from "./Jog";
+import * as actions from "../../store/jogs/actions";
+import JogsList from "./JogsList";
 
 class JogsContainer extends React.Component {
 
+  componentWillMount() {
+    this.props.fetchJogs();
+  }
+
   render() {
-    if(this.props.jogs == null) {
-      return <div>Loading...</div>
-    }
-    if(this.props.length == 0) {
-      return <div>No jogs logged yet!</div>
-    }
     return (
       <div>
-        { this.props.jogs.map(jog => this.renderJog(jog)) }
+        <JogsList
+          jogs={ this.props.jogs }
+        />
       </div>
     )
   }
@@ -23,10 +24,12 @@ class JogsContainer extends React.Component {
   }
 }
 
-const mapStateToProps = () => ({
+const mapStateToProps = (state) => ({
+  jogs: state.jogs.list
 })
 
-const mapDispatchToProps= () => ({
+const mapDispatchToProps = (dispatch) => ({
+  fetchJogs: () => { dispatch(actions.fetchJogs()) }
 })
 
 export default connect(
