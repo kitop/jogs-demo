@@ -46,7 +46,7 @@ class Jogs < Cuba
       jog = current_user.jogs_dataset[id.to_i]
 
       on jog do
-        if jog.update(jog_params)
+        if jog.update(jog_params) or not jog.modified?
           json serialize(jog)
         else
           unprocessable_entity(errors: jog.errors.full_messages)
