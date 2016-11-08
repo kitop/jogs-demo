@@ -23,19 +23,34 @@ Set up
 ```
 cd server
 bundle install
-make db_create name=jogger_development
-make db_migrate env=development
 cp config/database.yml.example config/database.yml
 cp .env.example .env
 ```
-
 Make sure to edit `config/database.yml` and `.env` with proper settings.
 
+And then run:
+```
+make db_create name=jogger_development
+make db_migrate env=development
+```
+
+To initialize a server in port 9393:
 ```
 make server
- ```
+```
 
-This will initialize a server in port 9393.
+To initialize a development server that reloads on every request:
+```
+make dev_server
+```
+
+Run the client:
+```
+npm install
+npm start
+```
+
+And then you can access the site at `http://localhost:8080`
 
 
 ## Tests
