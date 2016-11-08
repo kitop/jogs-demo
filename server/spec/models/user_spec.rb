@@ -31,7 +31,7 @@ RSpec.describe User do
       user = User.new(email: "notanemail")
 
       expect(user.valid?).to be_falsey
-      expect(user.errors[:email]).to include "not valid"
+      expect(user.errors[:email]).to include "is not valid"
     end
 
     it "validates email uniqueness" do

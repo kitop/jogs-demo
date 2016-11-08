@@ -17,6 +17,13 @@ RSpec.describe Jog do
       expect(jog.errors[:date]).to include "can't be empty"
     end
 
+    it "validates date format" do
+      jog = build_jog(date: "123")
+
+      expect(jog.valid?).to be_falsey
+      expect(jog.errors[:date]).to include "has an invalid format"
+    end
+
     it "validates distance is present" do
       jog = build_jog(distance: nil)
 

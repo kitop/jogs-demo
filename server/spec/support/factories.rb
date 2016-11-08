@@ -35,7 +35,7 @@ module TestHelpers
     def build_jog(attrs = {})
       attributes = {
         user_id: 1,
-        date: Date.today,
+        date: Date.today.iso8601,
         distance: 5000,
         duration: 30 * 60
       }.merge(attrs)

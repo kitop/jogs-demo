@@ -11,7 +11,7 @@ module Validations
   def validate_greater_than(value, *attributes)
     attributes.each do |attribute|
       attr_value = send(attribute).to_f
-      if attr_value and attr_value < value
+      if attr_value and attr_value <= value
         errors.add(attribute, "has to be greater than 0")
       end
     end
