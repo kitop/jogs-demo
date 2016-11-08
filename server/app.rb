@@ -30,7 +30,7 @@ require env_file if File.exist? env_file
 Cuba.use Rack::Cors do
   allow do
     origins "*"
-    resource "*", headers: :any, methods: %i{ get post put delete destroy options }
+    resource "*", headers: :any, methods: %i{ get post put patch delete options }
   end
 end
 Cuba.use Rack::ConditionalGet
