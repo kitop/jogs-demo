@@ -16,7 +16,7 @@ class Jog < Sequel::Model
       result = if value =~ /\d{4}-\d{2}-\d{2}/
                  Date.strptime(value, "%Y-%m-%d")
                elsif value =~ %r{\d{2}/\d{2}/\d{4}}
-                 Date.strptime(value, "%m/%d/%Y")
+                 Date.strptime(value, "%d/%m/%Y")
                end
       self[:date] = result
     end
