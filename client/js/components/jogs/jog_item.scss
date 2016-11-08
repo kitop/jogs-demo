@@ -32,8 +32,8 @@
 
 .average_speed {
   @include span-columns(3 of 9);
-  line-height: 24px;
-  color: gray;
+  font-size: 24px;
+  color: #AAA;
 }
 
 .actions {

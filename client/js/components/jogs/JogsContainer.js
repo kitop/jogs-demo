@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import * as actions from "../../store/jogs/actions";
 import JogsList from "./JogsList";
+import JogsFilter from "./JogsFilter";
 import NewJog from "./NewJog";
 
 class JogsContainer extends React.Component {
@@ -16,6 +17,7 @@ class JogsContainer extends React.Component {
         <NewJog
           onSubmitJog={this.props.onCreateJog}
         />
+        <JogsFilter />
         <JogsList
           jogs={ this.props.jogs }
           onEditJog={ this.props.onEditJog }

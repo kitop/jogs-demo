@@ -121,7 +121,7 @@ class Jog extends React.Component {
             <span className="fa fa-clock-o"></span> { this.formatDuration(jog.duration) }
           </div>
           <div className={ styles.average_speed }>
-            Average speed: { this.formatSpeed(jog.average_speed) }
+            { this.formatSpeed(jog.average_speed) }
           </div>
         </div>
         <div className={ styles.actions }>
