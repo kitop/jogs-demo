@@ -42,7 +42,7 @@ class NewJog extends React.Component {
     if(durationString.match(/:/)) {
       let [seconds, minutes, hours] = durationString.split(":").reverse();
       [seconds, minutes, hours] = [seconds, minutes, hours].map(n => parseInt(n, 10) || 0);
-      return seconds + minutes * 60 + hours * 60;
+      return seconds + minutes * 60 + hours * 60 * 60;
     } else {
       return parseInt(durationString, 10) || 0;
     }
