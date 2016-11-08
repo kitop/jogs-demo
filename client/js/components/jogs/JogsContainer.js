@@ -19,6 +19,7 @@ class JogsContainer extends React.Component {
         <JogsList
           jogs={ this.props.jogs }
           onEditJog={ this.props.onEditJog }
+          onDeleteJog={ this.props.onDeleteJog }
         />
       </div>
     )
@@ -37,6 +38,7 @@ const mapDispatchToProps = (dispatch) => ({
   fetchJogs: () => { dispatch(actions.fetchJogs()) },
   onCreateJog: (params) => { dispatch(actions.createJog(params)) },
   onEditJog: (id, params) => { dispatch(actions.updateJog(id, params)) },
+  onDeleteJog: (id) => { dispatch(actions.deleteJog(id)) },
 })
 
 export default connect(

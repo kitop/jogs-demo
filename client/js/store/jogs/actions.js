@@ -6,6 +6,21 @@ const jogsFetched = (response) => ({
   list: response
 })
 
+const addJog = (data) => ({
+  ...data,
+  type: actions.ADD_JOG
+})
+
+const editJog = (data) => ({
+  ...data,
+  type: actions.EDIT_JOG
+})
+
+const deletedJog = (id) => ({
+  type: actions.DELETE_JOG,
+  id: id
+})
+
 export const fetchJogs = () => (dispatch) => (
   ApiClient.getJogs().then(
     response => {
@@ -19,8 +34,7 @@ export const fetchJogs = () => (dispatch) => (
 export const createJog = (params) => (dispatch) => (
   ApiClient.createJog(params).then(
     response => {
-      // TODO update to just add that meal
-      dispatch(fetchJogs());
+      dispatch(addJog(response.data));
     },
     error => {
       console.log("error", error)
@@ -30,8 +44,17 @@ export const createJog = (params) => (dispatch) => (
 export const updateJog = (id, params) => (dispatch) => (
   ApiClient.updateJog(id, params).then(
     response => {
-      // TODO update to edit meal
-      dispatch(fetchJogs());
+      dispatch(editJog(response.data));
+    },
+    error => {
+      console.log("error", error)
+    })
+)
+
+export const deleteJog = (id) => (dispatch) => (
+  ApiClient.deleteJog(id).then(
+    response => {
+      dispatch(deletedJog(id));
     },
     error => {
       console.log("error", error)

@@ -24,6 +24,7 @@ class JogsList extends React.Component {
         key={jog.id}
         jog={jog}
         onEditJog={this.props.onEditJog}
+        onDeleteJog={this.props.onDeleteJog}
       />
     )
   }

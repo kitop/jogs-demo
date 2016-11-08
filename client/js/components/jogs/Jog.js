@@ -1,5 +1,6 @@
 import React from "react";
 import { isEmpty } from "lodash"
+import moment from "moment";
 import styles from "./jog_item.scss";
 
 class Jog extends React.Component {
@@ -10,16 +11,22 @@ class Jog extends React.Component {
       errors: {}
     }
     this.toggleEdit = this.toggleEdit.bind(this);
+    this.onSave = this.onSave.bind(this);
+    this.removeJog = this.removeJog.bind(this);
   }
 
   toggleEdit() {
     this.setState({ editing: !this.state.editing })
   }
 
+  formatDate(date) {
+    return moment.utc(date).format("dddd, MMMM Do YYYY");
+  }
+
   formatDistance(meters, include_unit = true) {
     let km = meters / 1000;
     let unit = include_unit ? "km" : "";
-    return `${km}${unit}`
+    return `${km.toFixed(2)}${unit}`
   }
 
   formatDuration(time) {
@@ -29,11 +36,15 @@ class Jog extends React.Component {
     hours = Math.floor(minutes / 60);
     minutes = minutes % 60;
 
-    return [hours, minutes, seconds].map(i => i > 10 ? i.toString() : `0${i}`).join(":")
+    return [hours, minutes, seconds].map(i => i >= 10 ? i.toString() : `0${i}`).join(":")
   }
 
   formatSpeed(meters_per_second) {
     return `${meters_per_second} m/s`
+  }
+
+  removeJog() {
+    this.props.onDeleteJog(this.props.jog.id)
   }
 
   onSave(e) {
@@ -101,20 +112,21 @@ class Jog extends React.Component {
       <div className={ styles.root }>
         <div className={ styles.main }>
           <div className={ styles.date }>
-            { jog.date }
+            { this.formatDate(jog.date) }
           </div>
           <div className={ styles.distance }>
             { this.formatDistance(jog.distance) }
           </div>
           <div className={ styles.duration }>
-            { this.formatDuration(jog.duration) }
+            <span className="fa fa-clock-o"></span> { this.formatDuration(jog.duration) }
           </div>
           <div className={ styles.average_speed }>
-            { this.formatSpeed(jog.average_speed) }
+            Average speed: { this.formatSpeed(jog.average_speed) }
           </div>
         </div>
         <div className={ styles.actions }>
           <a onClick={this.toggleEdit} className={styles.action}>Edit</a>
+          <a onClick={this.removeJog} className={styles.action}>Delete</a>
         </div>
       </div>
     )
@@ -124,7 +136,7 @@ class Jog extends React.Component {
     let jog = this.props.jog;
     return (
       <div className={styles.root}>
-        <form onSubmit={ this.onSave.bind(this) }>
+        <form onSubmit={ this.onSave }>
           <div className={styles.main}>
             <div className={ styles.edit_field }>
               <label>Date</label>

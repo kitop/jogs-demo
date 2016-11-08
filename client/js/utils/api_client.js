@@ -33,6 +33,10 @@ const ApiClient = {
   updateJog(id, params) {
     return xhr.put(`/jogs/${id}`, params)
   },
+
+  deleteJog(id) {
+    return xhr.delete(`/jogs/${id}`)
+  }
 }
 
 export default ApiClient;
