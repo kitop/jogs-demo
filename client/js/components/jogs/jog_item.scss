@@ -16,4 +16,33 @@
 
 .actions {
   @include span-columns(3);
+  text-align: right;
+  margin-top: 28px;
+}
+
+.action {
+  background: #BCC3B9;
+  border-radius: 2px;
+  color: white;
+  cursor: pointer;
+  font-size: 12px;
+  line-height: 1.2;
+  margin-left: 15px;
+  padding: 4px 10px;
+  text-transform: uppercase;
+  vertical-align: middle;
+  &:hover{
+    color: white;
+    background: #748A69;
+  }
+}
+
+.edit_field {
+  @include span-columns(3 of 9);
+  font-size: 14px;
+}
+
+.error {
+  color: #CE2626;
+  margin-bottom: 10px;
 }

@@ -26,7 +26,6 @@ class NewJog extends React.Component {
       this.refs.date.value = "";
       this.refs.distance.value = "";
       this.refs.duration.value = "";
-
     } else {
       this.setState({ errors: errors })
     }
@@ -41,11 +40,11 @@ class NewJog extends React.Component {
     let durationString = this.refs.duration.value;
 
     if(durationString.match(/:/)) {
-      return parseInt(durationString, 10) || 0
-    } else {
-      let [seconds, minutes, hours] = durationString.split(":").reverse()
-      [seconds, minutes, hours] = [seconds, minutes, hours].map(n => parseInt(n, 10) || 0)
+      let [seconds, minutes, hours] = durationString.split(":").reverse();
+      [seconds, minutes, hours] = [seconds, minutes, hours].map(n => parseInt(n, 10) || 0);
       return seconds + minutes * 60 + hours * 60;
+    } else {
+      return parseInt(durationString, 10) || 0;
     }
   }
 
@@ -83,7 +82,7 @@ class NewJog extends React.Component {
             <div className={ styles.field }>
               <label>Duration ([HH:]MM:SS)</label>
               <input ref="duration" type="text" placeholder="e.g. 30:00 (= 30 minutes)"/>
-              { this.errorsFor("distance") }
+              { this.errorsFor("duration") }
             </div>
           </div>
           <div className={ styles.submit }>

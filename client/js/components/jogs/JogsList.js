@@ -19,7 +19,13 @@ class JogsList extends React.Component {
   }
 
   renderJog(jog) {
-    return <Jog key={jog.id} jog={jog} />
+    return (
+      <Jog
+        key={jog.id}
+        jog={jog}
+        onEditJog={this.props.onEditJog}
+      />
+    )
   }
 }
 

@@ -19,6 +19,18 @@ export const fetchJogs = () => (dispatch) => (
 export const createJog = (params) => (dispatch) => (
   ApiClient.createJog(params).then(
     response => {
+      // TODO update to just add that meal
+      dispatch(fetchJogs());
+    },
+    error => {
+      console.log("error", error)
+    })
+)
+
+export const updateJog = (id, params) => (dispatch) => (
+  ApiClient.updateJog(id, params).then(
+    response => {
+      // TODO update to edit meal
       dispatch(fetchJogs());
     },
     error => {

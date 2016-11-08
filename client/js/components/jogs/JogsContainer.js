@@ -18,6 +18,7 @@ class JogsContainer extends React.Component {
         />
         <JogsList
           jogs={ this.props.jogs }
+          onEditJog={ this.props.onEditJog }
         />
       </div>
     )
@@ -29,12 +30,13 @@ class JogsContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  jogs: state.jogs.list
+  jogs: state.jogs.list,
 })
 
 const mapDispatchToProps = (dispatch) => ({
   fetchJogs: () => { dispatch(actions.fetchJogs()) },
-  onCreateJog: (params) => { dispatch(actions.createJog(params)) }
+  onCreateJog: (params) => { dispatch(actions.createJog(params)) },
+  onEditJog: (id, params) => { dispatch(actions.updateJog(id, params)) },
 })
 
 export default connect(

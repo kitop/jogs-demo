@@ -28,7 +28,11 @@ const ApiClient = {
 
   createJog(params) {
     return xhr.post("/jogs", params)
-  }
+  },
+
+  updateJog(id, params) {
+    return xhr.put(`/jogs/${id}`, params)
+  },
 }
 
 export default ApiClient;
