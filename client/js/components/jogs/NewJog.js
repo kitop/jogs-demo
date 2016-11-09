@@ -1,5 +1,6 @@
 import React from "react";
 import { isEmpty } from "lodash";
+import validateJog from "../../utils/validate_jog";
 import styles from "./new_jog.scss";
 
 class NewJog extends React.Component {
@@ -19,7 +20,7 @@ class NewJog extends React.Component {
       duration: this.formattedDuration(),
     }
 
-    let errors = this.validate(params)
+    let errors = validateJog(params)
     if(isEmpty(errors)) {
       this.props.onSubmitJog(params)
       this.setState({ errors: {} })
@@ -48,23 +49,6 @@ class NewJog extends React.Component {
     }
   }
 
-  validate(params) {
-    let errors = {}
-    if(isEmpty(params.date)) {
-      errors["date"] = "Please enter a valid date"
-    } else if(!( params.date.match(/\d{4}-\d{2}-\d{2}/) || params.date.match(/\d{2}\/\d{2}\/\d{4}/) )) {
-      errors["date"] = "Please enter a valid date (YYYY-MM-DD or DD/MM/YYYY)"
-    }
-
-    if(params.duration <= 0) {
-      errors["duration"] = "Please enter a valid duration (bigger than 0)"
-    }
-    if(params.distance <= 0) {
-      errors["distance"] = "Please enter a valid distance (bigger than 0)"
-    }
-
-    return errors;
-  }
 
   render() {
     return(

@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import _ from "lodash";
 import moment from "moment";
+import * as formatters from "../../utils/formatters";
 import Jog from "./Jog";
 import styles from "./styles.scss";
 
@@ -53,10 +54,10 @@ class JogsList extends React.Component {
             { from.format("MMMM Do YYYY") } - { to.format("MMMM Do YYYY") }
           </div>
           <span>
-            Total Distance: { distance }m
+            Total Distance: { formatters.formatDistance(distance) }
           </span>
           <span>
-            Avg Speed { averageSpeed } m/s
+            Avg Speed { formatters.formatSpeed(averageSpeed) }
           </span>
         </header>
         { jogs.map(jog => this.renderJog(jog)) }

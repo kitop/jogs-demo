@@ -1,6 +1,7 @@
 import React from "react";
 import { isEmpty } from "lodash"
-import moment from "moment";
+import * as formatters from "../../utils/formatters";
+import validateJog from "../../utils/validate_jog";
 import styles from "./jog_item.scss";
 
 class Jog extends React.Component {
@@ -19,30 +20,6 @@ class Jog extends React.Component {
     this.setState({ editing: !this.state.editing })
   }
 
-  formatDate(date) {
-    return moment.utc(date).format("dddd, MMMM Do YYYY");
-  }
-
-  formatDistance(meters, include_unit = true) {
-    let km = meters / 1000;
-    let unit = include_unit ? "km" : "";
-    return `${km.toFixed(2)}${unit}`
-  }
-
-  formatDuration(time) {
-    let hours, minutes, seconds;
-    minutes = Math.floor(time / 60);
-    seconds = time % 60;
-    hours = Math.floor(minutes / 60);
-    minutes = minutes % 60;
-
-    return [hours, minutes, seconds].map(i => i >= 10 ? i.toString() : `0${i}`).join(":")
-  }
-
-  formatSpeed(meters_per_second) {
-    return `${meters_per_second} m/s`
-  }
-
   removeJog() {
     this.props.onDeleteJog(this.props.jog.id)
   }
@@ -56,7 +33,7 @@ class Jog extends React.Component {
       duration: this.editedDuration(),
     }
 
-    let errors = this.validate(params)
+    let errors = validateJog(params)
     if(isEmpty(errors)) {
       this.props.onEditJog(this.props.jog.id, params)
       this.setState({ errors: {}, editing: false })
@@ -111,16 +88,16 @@ class Jog extends React.Component {
       <div className={ styles.root }>
         <div className={ styles.main }>
           <div className={ styles.date }>
-            { this.formatDate(jog.date) }
+            { formatters.formatDate(jog.date) }
           </div>
           <div className={ styles.distance }>
-            { this.formatDistance(jog.distance) }
+            { formatters.formatDistance(jog.distance) }
           </div>
           <div className={ styles.duration }>
-            <span className="fa fa-clock-o"></span> { this.formatDuration(jog.duration) }
+            <span className="fa fa-clock-o"></span> { formatters.formatDuration(jog.duration) }
           </div>
           <div className={ styles.average_speed }>
-            { this.formatSpeed(jog.average_speed) }
+            { formatters.formatSpeed(jog.average_speed) }
           </div>
         </div>
         <div className={ styles.actions }>
@@ -144,12 +121,12 @@ class Jog extends React.Component {
             </div>
             <div className={ styles.edit_field }>
               <label>Distance (in km)</label>
-              <input ref="distance" type="number" min="0.1" step="0.01" defaultValue={this.formatDistance(jog.distance, false) }/>
+              <input ref="distance" type="number" min="0.1" step="0.01" defaultValue={formatters.formatDistance(jog.distance, false) }/>
               { this.errorsFor("distance") }
             </div>
             <div className={ styles.edit_field }>
               <label>Duration ([HH:]MM:SS)</label>
-              <input ref="duration" type="text" placeholder="e.g. 30:00 (= 30 minutes)" defaultValue={this.formatDuration(jog.duration)} />
+              <input ref="duration" type="text" placeholder="e.g. 30:00 (= 30 minutes)" defaultValue={formatters.formatDuration(jog.duration)} />
               { this.errorsFor("duration") }
             </div>
           </div>
