@@ -1,5 +1,5 @@
 import React from "react";
-import { isEmpty } from "lodash";
+import isEmpty from "lodash/isEmpty";
 import validateJog from "../../utils/validate_jog";
 import styles from "./new_jog.scss";
 

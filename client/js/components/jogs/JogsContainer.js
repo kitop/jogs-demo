@@ -17,7 +17,10 @@ class JogsContainer extends React.Component {
         <NewJog
           onSubmitJog={this.props.onCreateJog}
         />
-        <JogsFilter />
+        <JogsFilter
+          onSubmitFilter={this.props.onSubmitFilter}
+          onResetFilter={this.props.onResetFilter}
+        />
         <JogsList
           jogs={ this.props.jogs }
           onEditJog={ this.props.onEditJog }
