@@ -22,8 +22,8 @@ const ApiClient = {
     return xhr.post("/signup", params);
   },
 
-  getJogs() {
-    return xhr.get("/jogs");
+  getJogs(params) {
+    return xhr.get("/jogs", { params: params });
   },
 
   createJog(params) {

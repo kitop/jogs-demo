@@ -15,14 +15,14 @@ class JogsFilter extends React.Component {
 
   validate(params) {
     let errors = {}
-    if(!params.from){
-      errors["from"] = "Please enter Date From";
+    if(!params.date_from){
+      errors["date_from"] = "Please enter Date From";
     }
-    if(!params.to){
-      errors["to"] = "Please enter Date To";
+    if(!params.date_to){
+      errors["date_to"] = "Please enter Date To";
     }
-    if( params.from && params.to && params.from > params.to) {
-      errors["to"] = "Date To must be after Date From";
+    if(params.date_from && params.date_to && params.date_from > params.date_to){
+      errors["date_to"] = "Date To must be after Date From";
     }
 
     return errors;
@@ -30,8 +30,8 @@ class JogsFilter extends React.Component {
 
   submitFilter(e) {
     let params = {
-      from: this.refs.dateFrom.value,
-      to: this.refs.dateTo.value
+      date_from: this.refs.dateFrom.value,
+      date_to: this.refs.dateTo.value
     };
 
     let errors = this.validate(params);
@@ -68,12 +68,12 @@ class JogsFilter extends React.Component {
         <div>
           <label>From</label>
           <input type="date" ref="dateFrom" />
-          { this.errorsFor("from") }
+          { this.errorsFor("date_from") }
         </div>
         <div>
           <label>To</label>
           <input type="date" ref="dateTo" />
-          { this.errorsFor("to") }
+          { this.errorsFor("date_to") }
         </div>
         <div>
           <button onClick={ this.submitFilter } className={ styles.filterButton }>Filter</button>

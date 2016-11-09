@@ -44,6 +44,8 @@ const mapDispatchToProps = (dispatch) => ({
   onCreateJog: (params) => { dispatch(actions.createJog(params)) },
   onEditJog: (id, params) => { dispatch(actions.updateJog(id, params)) },
   onDeleteJog: (id) => { dispatch(actions.deleteJog(id)) },
+  onSubmitFilter: (params) => { dispatch(actions.fetchJogs(params)) },
+  onResetFilter: () => { dispatch(actions.fetchJogs()) },
 })
 
 export default connect(

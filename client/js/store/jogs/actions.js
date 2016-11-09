@@ -21,8 +21,8 @@ const deletedJog = (id) => ({
   id: id
 })
 
-export const fetchJogs = () => (dispatch) => (
-  ApiClient.getJogs().then(
+export const fetchJogs = (params) => (dispatch) => (
+  ApiClient.getJogs(params).then(
     response => {
       dispatch(jogsFetched(response.data))
     },

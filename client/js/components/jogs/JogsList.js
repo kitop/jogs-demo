@@ -79,7 +79,7 @@ class JogsList extends React.Component {
     if(this.props.jogs == null) {
       children = <div className={ styles.loading }>Loading...</div>
     } else if(this.props.jogs.length == 0) {
-      children = <div className={ styles.empty }>No jogs logged yet!</div>
+      children = <div className={ styles.empty }>No jogs to show</div>
     }
     return children
   }
