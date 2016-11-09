@@ -1,5 +1,13 @@
 import * as actions from "./action_types";
+import { onLogOut } from "../users/actions";
 import ApiClient from "../../utils/api_client";
+
+const handleUnauthorized = (response, dispatch) => {
+  if(response.status === 401){
+    dispatch(onLogOut());
+  }
+};
+
 
 const jogsFetched = (response) => ({
   type: actions.JOGS_FETCHED,
@@ -27,7 +35,7 @@ export const fetchJogs = (params) => (dispatch) => (
       dispatch(jogsFetched(response.data))
     },
     error => {
-      console.log("error", error)
+      handleUnauthorized(error.response, dispatch)
     })
 )
 
@@ -37,7 +45,7 @@ export const createJog = (params) => (dispatch) => (
       dispatch(addJog(response.data));
     },
     error => {
-      console.log("error", error)
+      handleUnauthorized(error.response, dispatch)
     })
 )
 
@@ -47,7 +55,7 @@ export const updateJog = (id, params) => (dispatch) => (
       dispatch(editJog(response.data));
     },
     error => {
-      console.log("error", error)
+      handleUnauthorized(error.response, dispatch)
     })
 )
 
@@ -57,6 +65,6 @@ export const deleteJog = (id) => (dispatch) => (
       dispatch(deletedJog(id));
     },
     error => {
-      console.log("error", error)
+      handleUnauthorized(error.response, dispatch)
     })
 )

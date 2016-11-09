@@ -53,13 +53,17 @@ Cuba.define do
     run Sessions
   end
 
-  on authenticated do
-    on "jogs" do
+  on "jogs" do
+    on authenticated do
       run Jogs
     end
 
-    on "admin" do
-      run Admin
+    on default do
+      unauthorized
     end
+  end
+
+  on authenticated, "admin" do
+    run Admin
   end
 end
