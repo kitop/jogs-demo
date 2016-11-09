@@ -21,5 +21,5 @@ export const formatDuration = (time) => {
 }
 
 export const formatSpeed = (meters_per_second) => {
-  return `${meters_per_second.toFixed(2)} m/s`
+  return `${meters_per_second.toFixed(2)}m/s`
 }

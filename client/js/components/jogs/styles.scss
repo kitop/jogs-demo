@@ -10,3 +10,33 @@
 .list {
   @include span-columns(9)
 }
+
+.jogsList {
+  margin-left: 20px;
+}
+
+.week {
+  margin-bottom: 50px;
+}
+
+.weekHeader {
+  @include clearfix;
+}
+
+.weekDates {
+  @include span-columns(8);
+  color: #008000;
+  font-size: 24px;
+}
+
+.weekStats {
+  @include span-columns(4);
+  text-align: right;
+  color: #AAA;
+  font-size: 18px;
+}
+
+.totalDistance, .avgSpeed {
+  color: #333;
+  font-weight: 500;
+}

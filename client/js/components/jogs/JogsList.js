@@ -48,19 +48,27 @@ class JogsList extends React.Component {
     let averageSpeed = _.sumBy(jogs, jog => jog.average_speed) / jogs.length
 
     return (
-      <div key={week_key}>
-        <header>
-          <div>
+      <div className={ styles.week} key={week_key}>
+        <header className={ styles.weekHeader }>
+          <div className={ styles.weekDates }>
             { from.format("MMMM Do YYYY") } - { to.format("MMMM Do YYYY") }
           </div>
-          <span>
-            Total Distance: { formatters.formatDistance(distance) }
-          </span>
-          <span>
-            Avg Speed { formatters.formatSpeed(averageSpeed) }
-          </span>
+          <div className={ styles.weekStats }>
+            <div>
+              Total Distance: <span className={ styles.totalDistance }>
+                { formatters.formatDistance(distance) }
+              </span>
+            </div>
+            <div>
+              Average Speed: <span className={ styles.avgSpeed }>
+                { formatters.formatSpeed(averageSpeed) }
+              </span>
+            </div>
+          </div>
         </header>
-        { jogs.map(jog => this.renderJog(jog)) }
+        <div className={ styles.jogsList }>
+          { jogs.map(jog => this.renderJog(jog)) }
+        </div>
       </div>
     )
   }
