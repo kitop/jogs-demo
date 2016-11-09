@@ -5,7 +5,7 @@
   @include outer-container();
   border-bottom: 1px solid #DDD;
   border-top: 1px solid #FFF;
-  padding: 20px;
+  padding: 20px 0 15px;
   &:last-child {
     border-bottom: none;
   }
