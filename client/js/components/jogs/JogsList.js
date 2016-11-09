@@ -33,7 +33,7 @@ class JogsList extends React.Component {
 
     let renderedGroups = _.map(orderedKeys, (key) => {
       let value = grouped[key];
-      let list = _.chain(value).sortBy(jog => jog.date).reverse().value()
+      let list = _.orderBy(value, jog => jog.date, "desc")
 
       return this.renderGroup(key, list)
     })
