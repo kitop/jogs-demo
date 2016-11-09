@@ -29,9 +29,10 @@ class JogsList extends React.Component {
       return [date.year(), date.week()].join(" ");
     });
 
-    // TODO sort groups
+    let orderedKeys = _.chain(grouped).keys().sort().reverse().value()
 
-    let renderedGroups = _.map(grouped, (value, key) => {
+    let renderedGroups = _.map(orderedKeys, (key) => {
+      let value = grouped[key];
       let list = _.chain(value).sortBy(jog => jog.date).reverse().value()
 
       return this.renderGroup(key, list)
