@@ -7,7 +7,11 @@ const AdminApiClient = {
 
   deleteUser(id) {
     return xhr.delete(`/admin/users/${id}`);
-  }
+  },
+
+  createUser(params) {
+    return xhr.post("/admin/users", params);
+  },
 }
 
 export default AdminApiClient;

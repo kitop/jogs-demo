@@ -1,8 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
 import * as actions from "../../../store/admin/actions";
+import { Link } from "react-router";
 import AdminLayout from "../Layout";
 import User from "./User";
+import styles from "./user_list.scss"
 
 class AdminUserList extends React.Component {
   componentWillMount() {
@@ -32,7 +34,14 @@ class AdminUserList extends React.Component {
   render() {
     return (
       <AdminLayout>
-        <h1>Users</h1>
+        <header className={styles.header}>
+          <div className={styles.title}>
+            <h1>Users</h1>
+          </div>
+          <div className={styles.right}>
+            <Link className={styles.cta} to="/admin/users/new">New User</Link>
+          </div>
+        </header>
         <table>
           <thead>
             <tr>

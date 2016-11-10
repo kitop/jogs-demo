@@ -1,0 +1,20 @@
+@import "bourbon";
+@import "neat";
+
+.root {
+  @include span-columns(6);
+}
+
+.error {
+  color: #CE2626;
+  margin-bottom: 10px;
+}
+
+.submit {
+  margin-top: 20px;
+}
+
+.cancel {
+  margin-left: 30px;
+  cursor:pointer;
+}

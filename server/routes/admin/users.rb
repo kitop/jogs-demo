@@ -25,7 +25,7 @@ class Admin < Cuba
           user.save
           json serialize(user)
         else
-          unprocessable_entity(errors: user.errors.full_messages)
+          unprocessable_entity(errors: user.errors.full_messages.map(&:capitalize))
         end
       end
 
@@ -46,7 +46,7 @@ class Admin < Cuba
           if user.update(user_params)
             json serialize(user)
           else
-            unprocessable_entity(errors: user.errors.full_messages)
+            unprocessable_entity(errors: user.errors.full_messages.map(&:capitalize))
           end
         end
       end

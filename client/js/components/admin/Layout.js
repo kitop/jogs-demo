@@ -1,11 +1,11 @@
 import React from "react";
-import Navbar from "../dashboard/Navbar";
+import AdminNavbar from "./Navbar";
 
 class AdminLayout extends React.Component {
   render() {
     return (
       <div>
-        <Navbar />
+        <AdminNavbar />
         <div className="container">
           { this.props.children }
         </div>
