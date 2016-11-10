@@ -4,7 +4,9 @@ require_relative "../helper"
 RSpec.describe User do
   context "validations" do
     it "validates password is present" do
-      user = User.new(email: "test@test.com")
+      user = User.new(email: "test@test.com",
+                      password: "",
+                      password_confirmation: "")
 
       expect(user.valid?).to be_falsey
       expect(user.errors[:password]).to include "can't be empty"

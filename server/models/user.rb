@@ -25,7 +25,7 @@ class User < Sequel::Model
 
   def password=(password)
     @password = password
-    super
+    super unless password.nil? or password.empty?
   end
 
   def user?
@@ -53,7 +53,7 @@ class User < Sequel::Model
     errors.add(:email, "is not valid") if email !~ /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
     errors.add(:email, "already exists") if User.where(email: email).exclude(id: id).count > 0
     errors.add(:password, "doesn't match confirmation") if password != password_confirmation
-    validate_presence_of(:password) unless crypted_password
+    validate_presence_of(:password) unless crypted_password and not crypted_password.empty?
     errors.add(:role, "is invalid") unless ROLES.include?(role)
   end
 end
