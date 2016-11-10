@@ -10,6 +10,7 @@ import SignUp from "../user/SignUp";
 import AdminUserList from "../admin/users/UserList";
 import AdminNewUser from "../admin/users/NewUser";
 import AdminEditUser from "../admin/users/EditUser";
+import AdminJogs from "../admin/jogs/Jogs";
 import rootReducer from "../../store/reducer";
 import "./app.scss";
 
@@ -27,6 +28,7 @@ class App extends React.Component {
     super(props)
     this.requireUser = this.requireUser.bind(this)
     this.requireAdmin = this.requireAdmin.bind(this)
+    this.requireAdminOrManager = this.requireAdminOrManager.bind(this)
   }
 
   authenticatedUser() {
@@ -57,6 +59,16 @@ class App extends React.Component {
     }
   }
 
+  requireAdminOrManager(nextState, replace) {
+    let user = this.authenticatedUser()
+    if(!user.token && !(user.role == "admin" || user.role == "user_manager")) {
+      replace({
+        pathname: "/sign_in",
+        state: { nextPathname: nextState.location.pathname }
+      })
+    }
+  }
+
   render() {
     return (
       <Provider store={store}>
@@ -64,9 +76,10 @@ class App extends React.Component {
           <Route path="/" component={Dashboard} onEnter={ this.requireUser }/>
           <Route path="/sign_in" component={SignIn} />
           <Route path="/sign_up" component={SignUp} />
-          <Route path="/admin" component={AdminUserList} onEnter={this.requireAdmin } />
-          <Route path="/admin/users/new" component={AdminNewUser} onEnter={this.requireAdmin } />
-          <Route path="/admin/users/:id/edit" component={AdminEditUser} onEnter={this.requireAdmin } />
+          <Route path="/admin" component={AdminUserList} onEnter={this.requireAdminOrManager } />
+          <Route path="/admin/users/new" component={AdminNewUser} onEnter={this.requireAdminOrManager } />
+          <Route path="/admin/users/:id/edit" component={AdminEditUser} onEnter={this.requireAdminOrManager } />
+          <Route path="/admin/users/:userId/jogs" component={AdminJogs} onEnter={this.requireAdmin } />
         </Router>
       </Provider>
     )

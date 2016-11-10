@@ -28,5 +28,24 @@
   }
 }
 
-.button {
+.actions {
+  text-align: right;
 }
+
+.action {
+  background: #BCC3B9;
+  border-radius: 2px;
+  color: white;
+  cursor: pointer;
+  font-size: 12px;
+  line-height: 1.2;
+  margin-left: 15px;
+  padding: 4px 10px;
+  text-transform: uppercase;
+  vertical-align: middle;
+  &:hover{
+    color: white;
+    background: #748A69;
+  }
+}
+

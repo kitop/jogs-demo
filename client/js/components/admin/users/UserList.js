@@ -25,6 +25,7 @@ class AdminUserList extends React.Component {
     return(
       <User
         key={ user.id }
+        currentUser={ this.props.currentUser }
         user={ user }
         onDeleteUser={ this.props.onDeleteUser }
       />
@@ -61,7 +62,8 @@ class AdminUserList extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  users: state.admin.users
+  users: state.admin.users,
+  currentUser: state.user,
 });
 
 const mapDispatchToProps = (dispatch) => ({
