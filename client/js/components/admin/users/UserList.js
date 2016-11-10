@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import * as actions from "../../../store/admin/actions";
 import AdminLayout from "../Layout";
+import User from "./User";
 
 class AdminUserList extends React.Component {
   componentWillMount() {
@@ -20,12 +21,11 @@ class AdminUserList extends React.Component {
 
   renderUser(user) {
     return(
-      <tr key={ user.id }>
-        <td>{ user.id }</td>
-        <td>{ user.email }</td>
-        <td>{ user.role }</td>
-        <td></td>
-      </tr>
+      <User
+        key={ user.id }
+        user={ user }
+        onDeleteUser={ this.props.onDeleteUser }
+      />
     )
   }
 
@@ -57,6 +57,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   fetchUsers: () => { dispatch(actions.fetchUsers()) },
+  onDeleteUser: (id) => { dispatch(actions.deleteUser(id)) },
 })
 
 export default connect(

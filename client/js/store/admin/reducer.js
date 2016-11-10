@@ -6,6 +6,10 @@ const admin = (state = {}, action) => {
       return {
         users: action.users
       }
+    case actions.USER_REMOVED:
+      return {
+        users: state.users.filter(u => u.id != action.id)
+      }
     default:
       return state;
   }
