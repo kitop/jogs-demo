@@ -11,6 +11,10 @@ class JogsContainer extends React.Component {
     this.props.fetchJogs();
   }
 
+  componentWillUnmount() {
+    this.props.clearJogs();
+  }
+
   render() {
     return (
       <div>
@@ -49,6 +53,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   onDeleteJog: (id) => { dispatch(actions.deleteJog(ownProps.targetUserId, id)) },
   onSubmitFilter: (params) => { dispatch(actions.fetchJogs(ownProps.targetUserId, params)) },
   onResetFilter: () => { dispatch(actions.fetchJogs(ownProps.targetUserId)) },
+  clearJogs: () => { dispatch(actions.clearJogs()) },
 })
 
 export default connect(

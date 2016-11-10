@@ -11,7 +11,7 @@ class AdminJogs extends React.Component {
       <AdminLayout>
         <header className={styles.headerMessage}>
           <h2>
-            Editing jogs from User ID <b>{ userId }</b>
+            Editing <b>User { userId }</b> jogs
           </h2>
           <Link to="/admin">&lsaquo; Go Back</Link>
         </header>
