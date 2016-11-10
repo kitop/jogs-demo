@@ -1,11 +1,21 @@
 import React from "react";
+import { connect } from "react-redux";
 import DashboardLayout from "./DashboardLayout";
 import JogsContainer from "../jogs/JogsContainer";
 
-const Dashboard = () => (
+const Dashboard = (props) => (
   <DashboardLayout>
-    <JogsContainer />
+    <JogsContainer
+      targetUserId={ props.targetUserId }
+    />
   </DashboardLayout>
 )
 
-export default Dashboard;
+const mapStateToProps = (state) => ({
+  targetUserId: state.user.id
+});
+
+export default connect(
+  mapStateToProps,
+  null
+)(Dashboard);

@@ -15,13 +15,16 @@ class JogsContainer extends React.Component {
     return (
       <div>
         <NewJog
+          targetUserId={this.props.targetUserId}
           onSubmitJog={this.props.onCreateJog}
         />
         <JogsFilter
+          targetUserId={this.props.targetUserId}
           onSubmitFilter={this.props.onSubmitFilter}
           onResetFilter={this.props.onResetFilter}
         />
         <JogsList
+          targetUserId={ this.props.targetUserId }
           jogs={ this.props.jogs }
           onEditJog={ this.props.onEditJog }
           onDeleteJog={ this.props.onDeleteJog }
@@ -39,13 +42,13 @@ const mapStateToProps = (state) => ({
   jogs: state.jogs.list,
 })
 
-const mapDispatchToProps = (dispatch) => ({
-  fetchJogs: () => { dispatch(actions.fetchJogs()) },
-  onCreateJog: (params) => { dispatch(actions.createJog(params)) },
-  onEditJog: (id, params) => { dispatch(actions.updateJog(id, params)) },
-  onDeleteJog: (id) => { dispatch(actions.deleteJog(id)) },
-  onSubmitFilter: (params) => { dispatch(actions.fetchJogs(params)) },
-  onResetFilter: () => { dispatch(actions.fetchJogs()) },
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  fetchJogs: () => { dispatch(actions.fetchJogs(ownProps.targetUserId)) },
+  onCreateJog: (params) => { dispatch(actions.createJog(ownProps.targetUserId, params)) },
+  onEditJog: (id, params) => { dispatch(actions.updateJog(ownProps.targetUserId, id, params)) },
+  onDeleteJog: (id) => { dispatch(actions.deleteJog(ownProps.targetUserId, id)) },
+  onSubmitFilter: (params) => { dispatch(actions.fetchJogs(ownProps.targetUserId, params)) },
+  onResetFilter: () => { dispatch(actions.fetchJogs(ownProps.targetUserId)) },
 })
 
 export default connect(

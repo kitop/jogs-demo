@@ -29,8 +29,8 @@ const deletedJog = (id) => ({
   id: id
 })
 
-export const fetchJogs = (params) => (dispatch) => (
-  ApiClient.getJogs(params).then(
+export const fetchJogs = (userId, params) => (dispatch) => (
+  ApiClient.getJogs(userId, params).then(
     response => {
       dispatch(jogsFetched(response.data))
     },
@@ -39,8 +39,8 @@ export const fetchJogs = (params) => (dispatch) => (
     })
 )
 
-export const createJog = (params) => (dispatch) => (
-  ApiClient.createJog(params).then(
+export const createJog = (userId, params) => (dispatch) => (
+  ApiClient.createJog(userId, params).then(
     response => {
       dispatch(addJog(response.data));
     },
@@ -49,8 +49,8 @@ export const createJog = (params) => (dispatch) => (
     })
 )
 
-export const updateJog = (id, params) => (dispatch) => (
-  ApiClient.updateJog(id, params).then(
+export const updateJog = (userId, id, params) => (dispatch) => (
+  ApiClient.updateJog(userId, id, params).then(
     response => {
       dispatch(editJog(response.data));
     },
@@ -59,8 +59,8 @@ export const updateJog = (id, params) => (dispatch) => (
     })
 )
 
-export const deleteJog = (id) => (dispatch) => (
-  ApiClient.deleteJog(id).then(
+export const deleteJog = (userId, id) => (dispatch) => (
+  ApiClient.deleteJog(userId, id).then(
     response => {
       dispatch(deletedJog(id));
     },

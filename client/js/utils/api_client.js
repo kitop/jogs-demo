@@ -9,20 +9,20 @@ const ApiClient = {
     return xhr.post("/signup", params);
   },
 
-  getJogs(params) {
-    return xhr.get("/jogs", { params: params });
+  getJogs(userId, params) {
+    return xhr.get(`/users/${userId}/jogs`, { params: params });
   },
 
-  createJog(params) {
-    return xhr.post("/jogs", params)
+  createJog(userId, params) {
+    return xhr.post(`/users/${userId}/jogs`, params)
   },
 
-  updateJog(id, params) {
-    return xhr.put(`/jogs/${id}`, params)
+  updateJog(userId, id, params) {
+    return xhr.put(`/users/${userId}/jogs/${id}`, params)
   },
 
-  deleteJog(id) {
-    return xhr.delete(`/jogs/${id}`)
+  deleteJog(userId, id) {
+    return xhr.delete(`/users/${userId}/jogs/${id}`)
   }
 }
 
