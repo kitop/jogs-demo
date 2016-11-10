@@ -1,4 +1,5 @@
 import React from "react";
+import { formatRole } from "../../../utils/formatters";
 
 class User extends React.Component {
 
@@ -12,7 +13,7 @@ class User extends React.Component {
       <tr>
         <td>{ user.id }</td>
         <td>{ user.email }</td>
-        <td>{ user.role }</td>
+        <td>{ formatRole(user.role) }</td>
         <td>
           <a onClick={() => this.deleteUser(user)}>Delete</a>
         </td>

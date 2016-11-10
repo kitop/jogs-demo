@@ -23,3 +23,16 @@ export const formatDuration = (time) => {
 export const formatSpeed = (meters_per_second) => {
   return `${meters_per_second.toFixed(2)}m/s`
 }
+
+export const formatRole = (role) => {
+  switch(role) {
+    case "user":
+      return "User"
+    case "user_manager":
+      return "User Manager";
+    case "admin":
+      return "Admin";
+    default:
+      return role;
+  }
+}

@@ -2,8 +2,9 @@ import React from "react";
 import { Link } from "react-router";
 import { connect } from "react-redux";
 import isEmpty from "lodash/isEmpty";
+import * as actions from "../../../store/admin/actions";
+import { formatRole } from "../../../utils/formatters";
 import styles from "./user_form.scss";
-import * as actions from "../../../store/admin/actions"
 
 class UserForm extends React.Component {
   constructor(props) {
@@ -67,9 +68,9 @@ class UserForm extends React.Component {
   }
 
   render() {
-    let adminRole = "";
+    let roles = ["user", "user_manager"];
     if(this.props.currentUser.role == "admin"){
-      adminRole = <option value="admin">Admin</option>
+      roles.push("admin")
     }
 
     return (
@@ -82,9 +83,9 @@ class UserForm extends React.Component {
         <div>
           <label>Role</label>
           <select ref="role" defaultValue={ this.state.role }>
-            <option value="user">Normal User</option>
-            <option value="user_manager">User Manager</option>
-            { adminRole }
+            {
+              roles.map(role => <option value={role} key={role}>{ formatRole(role) }</option>)
+            }
           </select>
           { this.errorsFor("role") }
         </div>
