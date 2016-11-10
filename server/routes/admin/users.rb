@@ -13,7 +13,11 @@ class Admin < Cuba
 
     define do
       on get, root do
-        users = User.all
+        users = if current_user.admin?
+                  User.all
+                else
+                  User.not_admins.all
+                end
 
         json serialize(users)
       end

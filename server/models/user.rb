@@ -19,6 +19,10 @@ class User < Sequel::Model
     where(role: ROLE_USER)
   end
 
+  def_dataset_method :not_admins do
+    where(role: ROLES.reject{ |r| r == ROLE_ADMIN })
+  end
+
   def self.fetch(email)
     User.where(email: email).first
   end
