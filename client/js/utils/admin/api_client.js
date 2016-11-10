@@ -12,6 +12,10 @@ const AdminApiClient = {
   createUser(params) {
     return xhr.post("/admin/users", params);
   },
+
+  editUser(id, params) {
+    return xhr.put(`/admin/users/${id}`, params);
+  },
 }
 
 export default AdminApiClient;

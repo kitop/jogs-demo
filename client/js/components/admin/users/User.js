@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router"
 import { formatRole } from "../../../utils/formatters";
 
 class User extends React.Component {
@@ -15,6 +16,7 @@ class User extends React.Component {
         <td>{ user.email }</td>
         <td>{ formatRole(user.role) }</td>
         <td>
+          <Link to={ `/admin/users/${user.id}/edit` }>Edit</Link>
           <a onClick={() => this.deleteUser(user)}>Delete</a>
         </td>
       </tr>

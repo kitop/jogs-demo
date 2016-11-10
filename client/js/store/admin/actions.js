@@ -12,6 +12,11 @@ const userAdded = (data) => ({
   type: actions.USER_ADDED,
 })
 
+const userUpdated = (data) => ({
+  ...data,
+  type: actions.USER_UPDATED,
+})
+
 const userRemoved = (id) => ({
   type: actions.USER_REMOVED,
   id: id
@@ -42,6 +47,19 @@ export const createUser = (params) => (dispatch) => {
   ApiClient.createUser(params).then(
     response => {
       dispatch(userAdded(response.data))
+      dispatch(push("/admin"))
+    },
+    error => {
+      // TODO handle unauthorized
+      console.log(error)
+      dispatch(userFormError(error.response.data.errors))
+    })
+}
+
+export const editUser = (id, params) => (dispatch) => {
+  ApiClient.editUser(id, params).then(
+    response => {
+      dispatch(userUpdated(response.data))
       dispatch(push("/admin"))
     },
     error => {

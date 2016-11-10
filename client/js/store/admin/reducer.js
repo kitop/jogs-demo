@@ -19,6 +19,10 @@ const admin = (state = {}, action) => {
           user(action)
         ]
       }
+    case actions.USER_UPDATED:
+      return {
+        users: state.users.map(u => u.id == action.id ? user(action) : u)
+      }
     case actions.USER_REMOVED:
       return {
         users: state.users.filter(u => u.id != action.id)

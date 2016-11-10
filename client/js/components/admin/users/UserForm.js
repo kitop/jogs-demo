@@ -77,12 +77,12 @@ class UserForm extends React.Component {
       <form className={ styles.root } onSubmit={ this.handleSubmit.bind(this) }>
         <div>
           <label>Email</label>
-          <input type="email" ref="email" defaultValue={ this.state.email } />
+          <input type="email" ref="email" defaultValue={ this.props.email } />
           { this.errorsFor("email") }
         </div>
         <div>
           <label>Role</label>
-          <select ref="role" defaultValue={ this.state.role }>
+          <select ref="role" defaultValue={ this.props.role }>
             {
               roles.map(role => <option value={role} key={role}>{ formatRole(role) }</option>)
             }
@@ -91,12 +91,12 @@ class UserForm extends React.Component {
         </div>
         <div>
           <label>Password</label>
-          <input type="password" ref="password" defaultValue={ this.state.password } />
+          <input type="password" ref="password" defaultValue={ this.props.password } />
           { this.errorsFor("password") }
         </div>
         <div>
           <label>Password Confirmation</label>
-          <input type="password" ref="password_confirmation" defaultValue={ this.state.passwordConfirmation } />
+          <input type="password" ref="password_confirmation" defaultValue={ this.props.passwordConfirmation } />
           { this.errorsFor("password_confirmation") }
         </div>
         <div className={ styles.submit }>

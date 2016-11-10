@@ -9,6 +9,7 @@ import SignIn from "../user/SignIn";
 import SignUp from "../user/SignUp";
 import AdminUserList from "../admin/users/UserList";
 import AdminNewUser from "../admin/users/NewUser";
+import AdminEditUser from "../admin/users/EditUser";
 import rootReducer from "../../store/reducer";
 import "./app.scss";
 
@@ -65,6 +66,7 @@ class App extends React.Component {
           <Route path="/sign_up" component={SignUp} />
           <Route path="/admin" component={AdminUserList} onEnter={this.requireAdmin } />
           <Route path="/admin/users/new" component={AdminNewUser} onEnter={this.requireAdmin } />
+          <Route path="/admin/users/:id/edit" component={AdminEditUser} onEnter={this.requireAdmin } />
         </Router>
       </Provider>
     )
