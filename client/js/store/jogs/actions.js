@@ -1,5 +1,5 @@
 import * as actions from "./action_types";
-import { onLogOut } from "../users/actions";
+import { onLogOut } from "../user/actions";
 import ApiClient from "../../utils/api_client";
 
 const handleUnauthorized = (response, dispatch) => {

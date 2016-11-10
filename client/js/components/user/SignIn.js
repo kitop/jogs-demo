@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router";
-import { onSubmitLogIn } from "../../store/users/actions";
+import { onSubmitLogIn } from "../../store/user/actions";
 import UserLayout from "./UserLayout";
 import styles from "./styles.scss";
 

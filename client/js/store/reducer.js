@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 import { routerReducer as routing } from 'react-router-redux';
-import user from "./users/reducer";
+import user from "./user/reducer";
 import jogs from "./jogs/reducer";
 import admin from "./admin/reducer";
 
