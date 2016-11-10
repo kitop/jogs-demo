@@ -43,7 +43,8 @@ class Admin < Cuba
         user = User[id.to_i]
 
         on user do
-          if user.update(user_params)
+          user.set(user_params)
+          if user.save(raise_on_failure: false)
             json serialize(user)
           else
             unprocessable_entity(errors: user.errors.full_messages.map(&:capitalize))

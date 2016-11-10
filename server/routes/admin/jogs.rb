@@ -48,7 +48,8 @@ class Admin < Cuba
         jog = Jog[id.to_i]
 
         on jog do
-          if jog.update(jog_params)
+          jog.set(jog_params)
+          if jog.save(raise_on_failure: true)
             json serialize(jog)
           else
             unprocessable_entity(errors: jog.errors.full_messages)
