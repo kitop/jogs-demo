@@ -7,6 +7,7 @@ import { syncHistoryWithStore, routerMiddleware } from "react-router-redux";
 import Dashboard from "../dashboard/Dashboard";
 import SignIn from "../user/SignIn";
 import SignUp from "../user/SignUp";
+import AdminUserList from "../admin/users/UserList";
 import rootReducer from "../../store/reducer";
 import "./app.scss";
 
@@ -23,6 +24,7 @@ class App extends React.Component {
   constructor(props) {
     super(props)
     this.requireUser = this.requireUser.bind(this)
+    this.requireAdmin = this.requireAdmin.bind(this)
   }
 
   authenticatedUser() {
@@ -43,6 +45,16 @@ class App extends React.Component {
     }
   }
 
+  requireAdmin(nextState, replace) {
+    let user = this.authenticatedUser()
+    if(!user.token && !user.role == "admin") {
+      replace({
+        pathname: "/sign_in",
+        state: { nextPathname: nextState.location.pathname }
+      })
+    }
+  }
+
   render() {
     return (
       <Provider store={store}>
@@ -50,6 +62,7 @@ class App extends React.Component {
           <Route path="/" component={Dashboard} onEnter={ this.requireUser }/>
           <Route path="/sign_in" component={SignIn} />
           <Route path="/sign_up" component={SignUp} />
+          <Route path="/admin" component={AdminUserList} onEnter={this.requireAdmin } />
         </Router>
       </Provider>
     )
