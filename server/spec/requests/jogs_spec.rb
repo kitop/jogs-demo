@@ -10,7 +10,7 @@ RSpec.describe Jogs do
       create_jog(user_id: user.id + 1)
     ]
 
-    get_as user, "/jogs"
+    get_as user, "/users/#{user.id}/jogs"
 
     expect_response 200
     expect(response_json).to eq serialize(jogs[0..1])
@@ -24,7 +24,7 @@ RSpec.describe Jogs do
 
     from = (Date.today - 2).iso8601
     to = Date.today.iso8601
-    get_as user, "/jogs", { date_from: from, date_to: to }
+    get_as user, "/users/#{user.id}/jogs", { date_from: from, date_to: to }
 
     expect_response 200
     expect(response_json).to eq serialize(jogs[0..0])
@@ -32,7 +32,7 @@ RSpec.describe Jogs do
 
   it "creates a jog" do
     date = Date.today
-    post_as user, "/jogs", { date: date.iso8601, distance: 4000, duration: 30 * 60 }
+    post_as user, "/users/#{user.id}/jogs", { date: date.iso8601, distance: 4000, duration: 30 * 60 }
 
     jog = Jog.last
 
@@ -45,7 +45,7 @@ RSpec.describe Jogs do
   it "shows current user's jog" do
     jog = create_jog(user_id: user.id)
 
-    get_as user, "/jogs/#{jog.id}"
+    get_as user, "/users/#{user.id}/jogs/#{jog.id}"
 
     expect_response 200
     expect(response_json).to eq serialize(jog)
@@ -54,7 +54,7 @@ RSpec.describe Jogs do
   it "does not show another user's jog" do
     jog = create_jog(user_id: user.id + 1)
 
-    get_as user, "/jogs/#{jog.id}"
+    get_as user, "/users/#{user.id}/jogs/#{jog.id}"
 
     expect_response 404
     expect(response_json).to eq nil
@@ -63,7 +63,7 @@ RSpec.describe Jogs do
   it "edits current user's jog" do
     jog = create_jog(user_id: user.id)
 
-    put_as user, "/jogs/#{jog.id}", { distance: 1000, duration: 3600 }
+    put_as user, "/users/#{user.id}/jogs/#{jog.id}", { distance: 1000, duration: 3600 }
 
     jog.set(distance: 1000, duration: 3600)
     expect_response 200
@@ -73,7 +73,7 @@ RSpec.describe Jogs do
   it "does not edit another user's jog" do
     jog = create_jog(user_id: user.id + 1)
 
-    put_as user, "/jogs/#{jog.id}", { distance: 1000, duration: 3600 }
+    put_as user, "/users/#{user.id}/jogs/#{jog.id}", { distance: 1000, duration: 3600 }
 
     old_attributes = jog.values
     jog.reload
@@ -86,7 +86,7 @@ RSpec.describe Jogs do
   it "deletes current user's jog" do
     jog = create_jog(user_id: user.id)
 
-    delete_as user, "/jogs/#{jog.id}"
+    delete_as user, "/users/#{user.id}/jogs/#{jog.id}"
 
     expect_response 204
     expect{ jog.reload }.to raise_error(Sequel::NoExistingObject)
@@ -95,7 +95,7 @@ RSpec.describe Jogs do
   it "does not delete another user's jog" do
     jog = create_jog(user_id: user.id + 1)
 
-    delete_as user, "/jogs/#{jog.id}"
+    delete_as user, "/users/#{user.id}/jogs/#{jog.id}"
 
     expect_response 404
     expect(response_json).to eq nil

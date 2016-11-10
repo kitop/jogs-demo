@@ -53,13 +53,16 @@ Cuba.define do
     run Sessions
   end
 
-  on "jogs" do
-    on authenticated do
-      run Jogs
-    end
-
-    on default do
-      unauthorized
+  on "users/:id" do |id|
+    on "jogs" do
+      on authenticated, current_user.id == id.to_i do
+        with(user: current_user) do
+          run Jogs
+        end
+      end
+      on default do
+        unauthorized
+      end
     end
   end
 

@@ -7,13 +7,15 @@ class Jogs < Cuba
   end
 
   define do
+    user = vars[:user]
+
     on get, root do
       jogs = if req.params["date_from"] && req.params["date_to"]
                from = req.params["date_from"]
                to = req.params["date_to"]
-               current_user.jogs_dataset.where("date BETWEEN ?::date AND ?::date", from, to)
+               user.jogs_dataset.where("date BETWEEN ?::date AND ?::date", from, to)
              else
-               jogs = current_user.jogs_dataset
+               jogs = user.jogs_dataset
              end
 
       jogs = jogs.order(Sequel.desc(:date)).all
@@ -22,7 +24,7 @@ class Jogs < Cuba
     end
 
     on post, root do
-      jog = Jog.new(jog_params.merge(user_id: current_user.id))
+      jog = Jog.new(jog_params.merge(user_id: user.id))
 
       if jog.valid?
         jog.save
@@ -33,7 +35,7 @@ class Jogs < Cuba
     end
 
     on get, ":id" do |id|
-      jog = current_user.jogs_dataset[id.to_i]
+      jog = user.jogs_dataset[id.to_i]
 
       if jog
         json serialize(jog)
@@ -43,7 +45,7 @@ class Jogs < Cuba
     end
 
     on (patch or put), ":id" do |id|
-      jog = current_user.jogs_dataset[id.to_i]
+      jog = user.jogs_dataset[id.to_i]
 
       on jog do
         jog.set(jog_params)
@@ -56,7 +58,7 @@ class Jogs < Cuba
     end
 
     on delete, ":id" do |id|
-      jog = current_user.jogs_dataset[id.to_i]
+      jog = user.jogs_dataset[id.to_i]
 
       on jog do
         if jog.destroy

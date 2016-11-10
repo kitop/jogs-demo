@@ -5,7 +5,7 @@ class Admin < Cuba
 
     def user_params
       attributes = ["email", "password", "password_confirmation"]
-      if admin?
+      if admin? or manager?
         attributes << "role"
       end
       req.params.slice(*attributes)
@@ -33,40 +33,39 @@ class Admin < Cuba
         end
       end
 
-      on get, ":id" do |id|
-        user = User[id.to_i]
-
-        if user
-          json serialize(user)
-        else
-          not_found
-        end
-      end
-
-      on (patch or put), ":id" do |id|
+      on ":id" do |id|
         user = User[id.to_i]
 
         on user do
-          user.set(user_params)
-          if user.save(raise_on_failure: false)
+          on get, root do
             json serialize(user)
-          else
-            unprocessable_entity(errors: user.errors.full_messages.map(&:capitalize))
           end
-        end
-      end
 
-      on delete, ":id" do |id|
-        user = User[id.to_i]
+          on (patch or put), root do
+            user.set(user_params)
+            if user.save(raise_on_failure: false)
+              json serialize(user)
+            else
+              unprocessable_entity(errors: user.errors.full_messages.map(&:capitalize))
+            end
+          end
 
-        on user do
-          if user.destroy
-            no_content
-          else
-            server_error
+          on delete, root do
+            if user.destroy
+              no_content
+            else
+              server_error
+            end
+          end
+
+          on admin?, "jogs" do
+            with(user: user) do
+              run Jogs
+            end
           end
         end
       end
     end
+
   end
 end
