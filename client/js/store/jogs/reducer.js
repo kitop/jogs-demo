@@ -30,6 +30,8 @@ const jogs = (state = {}, action) => {
       return {
         list: state.list.filter(jog => jog.id !== action.id)
       }
+    case actions.CLEAR_JOGS:
+      return {}
     default:
       return state;
   }

@@ -14,6 +14,10 @@
     background-color: #F8F8F8;
   }
 
+  a {
+    cursor: pointer;
+  }
+
   .container {
     @include outer-container;
   }
