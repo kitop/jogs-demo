@@ -1,6 +1,13 @@
 import { push } from "react-router-redux";
+import { onLogOut } from "../user/actions";
 import * as actions from "./action_types";
 import ApiClient from "../../utils/admin/api_client.js";
+
+const handleUnauthorized = (response, dispatch) => {
+  if(response.status === 401){
+    dispatch(onLogOut());
+  }
+};
 
 const usersFetched = (response) => ({
   type: actions.USERS_FETCHED,
@@ -37,8 +44,7 @@ export const fetchUsers = () => (dispatch) => {
       dispatch(usersFetched(response.data));
     },
     error => {
-      // TODO handle unauthorized
-      console.log(error)
+      handleUnauthorized(error.response, dispatch)
     }
   )
 }
@@ -50,8 +56,7 @@ export const createUser = (params) => (dispatch) => {
       dispatch(push("/admin"))
     },
     error => {
-      // TODO handle unauthorized
-      console.log(error)
+      handleUnauthorized(error.response, dispatch)
       dispatch(userFormError(error.response.data.errors))
     })
 }
@@ -63,8 +68,7 @@ export const editUser = (id, params) => (dispatch) => {
       dispatch(push("/admin"))
     },
     error => {
-      // TODO handle unauthorized
-      console.log(error)
+      handleUnauthorized(error.response, dispatch)
       dispatch(userFormError(error.response.data.errors))
     })
 }
@@ -75,8 +79,7 @@ export const deleteUser = (id) => (dispatch) => {
       dispatch(userRemoved(id));
     },
     error => {
-      // TODO handle unauthorized
-      console.log(error)
+      handleUnauthorized(error.response, dispatch)
     }
   )
 }

@@ -48,7 +48,6 @@ export const onSubmitLogIn = (email, password) => (dispatch, getState) => {
 
 export const onLogOut = () => (dispatch, getState) => {
   dispatch(logOut())
-  // TODO clear jogs?
   localStorage.clearUser();
   dispatch(push("/sign_in"))
 }
