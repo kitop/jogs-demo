@@ -70,3 +70,15 @@ Run tests:
 ```
 make test
  ```
+
+#### Client Tests
+
+Set up:
+```
+npm install
+```
+
+Run tests:
+```
+npm run test
+```
