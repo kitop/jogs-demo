@@ -18,7 +18,7 @@ const user = (state = currentUser, action) => {
         errors: action.errors
       };
     case actions.LOG_OUT:
-      return {};
+      return { };
     default:
       return state;
   }

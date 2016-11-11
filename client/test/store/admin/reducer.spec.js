@@ -1,11 +1,10 @@
 import expect from 'expect';
-import * as actions from '../../../js/store/admin/actions';
 import * as types from '../../../js/store/admin/action_types';
 import reducer from '../../../js/store/admin/reducer';
 
 const initialState = {}
 
-describe('users reducer', () => {
+describe('admin reducer', () => {
   it('returns the initial state', () => {
     expect(
       reducer(undefined, {})
@@ -92,6 +91,34 @@ describe('users reducer', () => {
     ]
     });
 
+  });
+
+  it("handles USER_FORM_ERROR", () => {
+    expect(
+      reducer({
+        users: []
+      }, {
+        type: types.USER_FORM_ERROR,
+        error: "test"
+      })
+    ).toEqual({
+      users: [],
+      userError: "test"
+    })
+  });
+
+  it("handles CLEAR_USER_FORM_ERROR", () => {
+    expect(
+      reducer({
+        users: [],
+        userError: "test"
+      }, {
+        type: types.CLEAR_USER_FORM_ERROR
+      })
+    ).toEqual({
+      users: [],
+      userError: undefined
+    })
   });
 
 });
