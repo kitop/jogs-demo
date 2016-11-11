@@ -5,7 +5,7 @@ import { onSubmitSignUp } from "../../store/user/actions";
 import UserLayout from "./UserLayout";
 import styles from "./styles.scss";
 
-class SignIn extends React.Component {
+class SignUp extends React.Component {
   onSubmitForm(e) {
     e.preventDefault();
     this.props.onSubmitSignUp({
@@ -18,7 +18,7 @@ class SignIn extends React.Component {
   render() {
     return (
       <UserLayout>
-        <h2>Sign In</h2>
+        <h2>Sign Up</h2>
         <form className={styles.form} onSubmit={this.onSubmitForm.bind(this)}>
           <div className={styles.error}>
             { this.props.user.errors && this.props.user.errors.join(". ") }
@@ -58,4 +58,4 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(SignIn);
+)(SignUp);
