@@ -1,5 +1,10 @@
 import jsdom from 'jsdom';
-import localStorage from 'localStorage';
+// mock localstorage
+const localStorage = {
+  getItem: () => {},
+  setItem: () => {},
+  removeItem: () => {}
+}
 
 const doc = jsdom.jsdom('<!doctype html><html><body></body></html>');
 const win = doc.defaultView;

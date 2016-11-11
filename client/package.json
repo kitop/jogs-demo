@@ -43,6 +43,8 @@
     "expect": "^1.20.1",
     "jsdom": "^9.8.3",
     "localStorage": "^1.0.3",
-    "mocha": "^2.5.3"
+    "mocha": "^2.5.3",
+    "moxios": "^0.3.0",
+    "redux-mock-store": "^1.0.3"
   }
 }
