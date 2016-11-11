@@ -6,13 +6,13 @@ import reducer from '../../../js/store/admin/reducer';
 const initialState = {}
 
 describe('users reducer', () => {
-  it('should return the initial state', () => {
+  it('returns the initial state', () => {
     expect(
       reducer(undefined, {})
     ).toEqual(initialState);
   });
 
-  it('should handle USERS_FETCHED', () => {
+  it('handles USERS_FETCHED', () => {
     const list = [{id: 1}, {id: 2}, {id: 3}];
     expect(
       reducer(initialState, {
@@ -31,12 +31,13 @@ describe('users reducer', () => {
     ).toEqual( { users: list });
   });
 
-  it('should handle USER_UPDATED', () => {
+  it('handles USER_UPDATED', () => {
     expect(
       reducer({
-        users: [ {id: 1, role: "admin", email: "user1@example.com"},
-                {id: 2, role: "user_manager", email: "user2@example.com"},
-              ]
+        users: [
+          {id: 1, role: "admin", email: "user1@example.com"},
+          {id: 2, role: "user_manager", email: "user2@example.com"},
+        ]
       }, {
         type: types.USER_UPDATED,
         id: 2,
@@ -52,7 +53,7 @@ describe('users reducer', () => {
 
   });
 
-  it('should handle USER_ADDED', () => {
+  it('handles USER_ADDED', () => {
     expect(
       reducer({
         users: [
@@ -75,24 +76,22 @@ describe('users reducer', () => {
 
   });
 
-  it('should handle DELETE_USER', () => {
+  it('handles USER_REMOVED', () => {
     expect(
       reducer({
-        users: [ {id: 1, role: "admin", email: "user1@example.com"},
-                {id: 2, role: "user_manager", email: "user2@example.com"},
-              ]
+        users: [
+          {id: 1, role: "admin", email: "user1@example.com"},
+          {id: 2, role: "user_manager", email: "user2@example.com"},
+        ]
       }, {
-        type: types.DELETE_USER,
-        userId: 3
+        type: types.USER_REMOVED,
+        id: 2
       })
-    ).toEqual({ users: [ {id: 1, role: "admin", email: "user1@example.com"},
-                        {id: 2, role: "user_manager", email: "user2@example.com"},
-                      ]
-              });
+    ).toEqual({ users: [
+      {id: 1, role: "admin", email: "user1@example.com"},
+    ]
+    });
 
   });
-
-
-
 
 });
