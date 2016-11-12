@@ -2,7 +2,7 @@
 require_relative "../../helper"
 
 RSpec.describe "Admin/Jogs" do
-  context "jog" do
+  context "user" do
     it "cannot access the admin area" do
       user = create_user
 
@@ -14,10 +14,10 @@ RSpec.describe "Admin/Jogs" do
   end
 
   context "user manager" do
-    let(:manager) { create_user_manager }
-    let(:user) { create_user }
-
     it "cannot admin jogs" do
+      manager = create_user_manager
+      user = create_user
+
       get_as manager, "/admin/users/#{user.id}/jogs"
 
       expect_response 404
