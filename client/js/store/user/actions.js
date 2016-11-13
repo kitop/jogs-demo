@@ -56,13 +56,11 @@ export const onSubmitSignUp = (params) => (dispatch, getState) => {
   ApiClient.signUp(params)
     .then(
       response => {
-        console.log("SUCCESS")
         dispatch(logIn(response.data))
         localStorage.setUser(response.data)
         dispatch(push("/"))
       },
       error => {
-        console.log("SUCCESS")
         dispatch(failedSignUp(error.response.data.errors))
     })
 }
