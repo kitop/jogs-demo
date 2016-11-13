@@ -68,7 +68,8 @@ RSpec.describe "Admin/Jogs" do
 
       put_as admin, "/admin/users/#{user.id}/jogs/#{jog.id}", { distance: 200 }
 
-      jog.set(distance: 200)
+      jog.reload
+      expect(jog.distance).to eq 200
       expect_response 200
       expect(response_json).to eq serialize(jog)
     end
