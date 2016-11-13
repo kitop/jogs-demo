@@ -65,7 +65,9 @@ RSpec.describe Jogs do
 
     put_as user, "/users/#{user.id}/jogs/#{jog.id}", { distance: 1000, duration: 3600 }
 
-    jog.set(distance: 1000, duration: 3600)
+    jog.reload
+    expect(jog.distance).to eq 1000
+    expect(jog.duration).to eq 3600
     expect_response 200
     expect(response_json).to eq serialize(jog)
   end
