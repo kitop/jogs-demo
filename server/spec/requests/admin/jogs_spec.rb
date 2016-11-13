@@ -2,26 +2,58 @@
 require_relative "../../helper"
 
 RSpec.describe "Admin/Jogs" do
+  let(:jog) { create_jog }
+  let(:jogs_params) { {
+      date: Date.today.iso8601,
+      distance: 5000,
+      duration: 30 * 60
+  } }
+  jogs_routes = {
+    get: %w{ /admin/users/%d/jogs /admin/users/%d/jogs/%d },
+    post: %w{ /admin/users/jogs },
+    put: %w{ /admin/users/%d/jogs/%d },
+    delete: %w{ /admin/users/%d/jogs/%d }
+  }
+
   context "user" do
-    it "cannot access the admin area" do
-      user = create_user
+    let(:user) { create_user }
 
-      get_as user, "/admin/users/#{user.id}/jogs"
+    jogs_routes.each do |method, routes|
+      routes.each do |route|
+        it "cannot access the admin jogs area - #{route}" do
+          processed_route = (route % [jog.user_id, jog.id])
+          params = {}
+          if method == :put or method == :post
+            params = jogs_params
+          end
 
-      expect_response 404
-      expect(response_json).to eq nil
+          send("#{method}_as", user, processed_route, params)
+
+          expect_response 404
+          expect(response_json).to eq nil
+        end
+      end
     end
   end
 
   context "user manager" do
-    it "cannot admin jogs" do
-      manager = create_user_manager
-      user = create_user
+    let(:user_manager) { create_user_manager}
 
-      get_as manager, "/admin/users/#{user.id}/jogs"
+    jogs_routes.each do |method, routes|
+      routes.each do |route|
+        it "cannot access the admin jogs area - #{route}" do
+          processed_route = (route % [jog.user_id, jog.id])
+          params = {}
+          if method == :put or method == :post
+            params = jogs_params
+          end
 
-      expect_response 404
-      expect(response_json).to eq nil
+          send("#{method}_as", user_manager, processed_route, params)
+
+          expect_response 404
+          expect(response_json).to eq nil
+        end
+      end
     end
   end
 
