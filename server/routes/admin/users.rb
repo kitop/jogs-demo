@@ -4,10 +4,7 @@ class Admin < Cuba
     using Utils::Hash
 
     def user_params
-      attributes = ["email", "password", "password_confirmation"]
-      if admin? or manager?
-        attributes << "role"
-      end
+      attributes = ["email", "password", "password_confirmation", "role"]
       req.params.slice(*attributes)
     end
 
